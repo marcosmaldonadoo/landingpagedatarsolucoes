@@ -1,4 +1,4 @@
-/* Tokens compartilhados: cores, tipografia e ritmo da página. */
+/* Shared tokens: colors, typography and page rhythm. */
 :root {
   --page-bg: #FFFFFF;
   --surface: #F5F8FD;
@@ -87,7 +87,7 @@ h2 { margin-top: 19px; font-size: clamp(32px, 4vw, 48px); line-height: 1.16; fon
 .cyan-link { color: var(--accent); }
 .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; box-shadow: 0 0 10px var(--accent-halo); }
 
-/* Navegação progressiva: os links continuam acessíveis sem JavaScript. */
+/* Progressive navigation: links remain accessible without JavaScript. */
 .site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: var(--header-bg); backdrop-filter: blur(16px); }
 .header-inner { min-height: 80px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .brand { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; font-size: 23px; font-weight: 700; letter-spacing: -.9px; }
@@ -105,7 +105,7 @@ h2 { margin-top: 19px; font-size: clamp(32px, 4vw, 48px); line-height: 1.16; fon
 .mobile-navigation .site-navigation > a:not(.button) { padding: 8px 12px; }
 .mobile-navigation .header-cta { margin-top: 8px; }
 
-/* Hero : la géométrie SVG est un asset local, sans canvas ni bibliothèque. */
+/* Hero: local SVG geometry without canvas or external libraries. */
 .hero { position: relative; isolation: isolate; overflow: clip; }
 .hero-glow { position: absolute; z-index: -1; width: min(800px, 100%); height: 680px; right: -8%; top: -130px; background: radial-gradient(ellipse, var(--hero-glow), transparent 67%); pointer-events: none; }
 .hero-grid { display: grid; gap: 20px; padding-top: 60px; }
@@ -380,7 +380,41 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
-/* Evita o zoom automático dos campos no Safari para iPhone. */
+/* Prevent automatic field zoom in Safari on iPhone. */
 @media (max-width: 799px), (pointer: coarse) {
   input, select, textarea, .contact-result textarea { font-size: 16px; }
+}
+
+/* Datar content and contact affordances reuse the existing palette. */
+.brand-light { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; letter-spacing: .1px; }
+.brand > span { display: block; }
+h1 { font-size: clamp(40px, 4.8vw, 64px); }
+.hero-eyebrow { flex-wrap: wrap; }
+.service-tags span { font-family: var(--font); font-size: 11px; line-height: 1.6; }
+.service-card h3 { min-height: 0; }
+.service-card > p { min-height: 0; }
+.services-grid .card-link { font-size: 12px; }
+.reassurance-section, .service-area-section { border-top: 1px solid var(--line); }
+.service-area-section { background: var(--surface); }
+.area-description { max-width: 700px; margin-top: 22px; color: var(--text-muted); font-size: 14px; line-height: 1.85; }
+.area-cities { padding-left: 20px; color: var(--text-subtle); font-size: 13px; line-height: 1.9; }
+.contact-number { overflow-wrap: anywhere; }
+.contact-points > span { line-height: 1.7; }
+.site-footer { padding-bottom: 110px; }
+.footer-main { flex-wrap: wrap; }
+.footer-main > div { max-width: 100%; }
+.footer-main > div > p { overflow-wrap: anywhere; }
+.floating-whatsapp { position: fixed; right: 20px; bottom: max(20px, env(safe-area-inset-bottom)); z-index: 15; box-shadow: 0 8px 26px var(--shadow-strong); }
+:root { scroll-padding-bottom: 100px; }
+a, button, input, select, textarea, summary, [tabindex] { scroll-margin-bottom: 100px; }
+@media (min-width: 800px) {
+  .site-navigation { gap: 12px; }
+  .site-navigation > a:not(.button) { font-size: 11px; }
+  .header-cta { gap: 8px; padding-inline: 12px; }
+  .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1100px) {
+  .site-navigation { gap: 24px; }
+  .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px; }
 }

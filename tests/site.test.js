@@ -1,0 +1,98 @@
+import { describe, expect, test } from "bun:test";
+import { BUSINESS_NAME, WHATSAPP_NUMBER, businessDetails, services, whatsappMessages } from "../js/config.js";
+import { createWhatsAppLink, formatWhatsAppNumber, getContactMode, updateBusinessSchema } from "../js/contact.js";
+
+const html = await Bun.file(new URL("../index.html", import.meta.url)).text();
+const schema = JSON.parse(html.match(/<script id="business-schema" type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+const configuredNumber = "5545999999999";
+
+describe("WhatsApp configuration and links", () => {
+  test("keeps the placeholder safe and formats it from the configuration", () => {
+    expect(getContactMode(WHATSAPP_NUMBER)).toBe("demo");
+    expect(createWhatsAppLink()).toBeNull();
+    expect(formatWhatsAppNumber()).toBe("+55 (DD) XXXXX-XXXX");
+    expect(formatWhatsAppNumber(configuredNumber)).toBe("+55 (45) 99999-9999");
+    expect(formatWhatsAppNumber("554533333333")).toBe("+55 (45) 3333-3333");
+    expect(formatWhatsAppNumber("+55 invalid")).toBe("Número pendente de configuração");
+  });
+
+  test("encodes every contextual message with a single URL builder", () => {
+    for (const message of Object.values(whatsappMessages)) {
+      const result = createWhatsAppLink(configuredNumber, message);
+      const url = new URL(result);
+      expect(url.origin).toBe("https://wa.me");
+      expect(url.pathname).toBe("/" + configuredNumber);
+      expect(url.searchParams.size).toBe(1);
+      expect(url.searchParams.get("text")).toBe(message);
+      expect(result).toContain(encodeURIComponent(message));
+      expect(message).toContain(BUSINESS_NAME);
+    }
+  });
+
+  test("never builds an external URL for an invalid configuration", () => {
+    for (const number of [null, "", "55DDXXXXXXXXX", "123", "5545999999999?text=other", "+55 (45) 99999-9999"]) {
+      expect(createWhatsAppLink(number)).toBeNull();
+    }
+  });
+
+  test("provides contextual CTAs in every required section", () => {
+    const links = [...html.matchAll(/<a\b[^>]*data-whatsapp="([^"]+)"[^>]*>/g)];
+    expect(links.length).toBe(8);
+    for (const [, context] of links) expect(Object.hasOwn(whatsappMessages, context)).toBe(true);
+    for (const [link] of links) {
+      expect(link).toContain('href="#contato"');
+      expect(link).toContain('target="_blank"');
+      expect(link).toContain('rel="noopener noreferrer"');
+      expect(link).toContain('aria-label="');
+    }
+    for (const context of ["hardware", "consulting", "network"]) {
+      expect(Object.hasOwn(services, context)).toBe(true);
+      expect(html).toContain('data-whatsapp="' + context + '"');
+    }
+    expect(html).toContain('class="button button-primary floating-whatsapp"');
+  });
+});
+
+describe("Local identity and structured data", () => {
+  test("uses a single page heading and consistent local metadata", () => {
+    expect([...html.matchAll(/<h1\b/g)].length).toBe(1);
+    expect(html).toContain('lang="pt-BR"');
+    expect(html.match(/<title>(.*?)<\/title>/)[1]).toContain(BUSINESS_NAME);
+    expect(schema.name).toBe(BUSINESS_NAME);
+    expect(schema.address.addressLocality).toBe("Cascavel");
+    expect(schema.address.addressRegion).toBe("PR");
+    expect(schema.address.addressCountry).toBe("BR");
+    expect(schema.openingHoursSpecification[0].dayOfWeek).toHaveLength(7);
+    expect(schema.openingHoursSpecification[0].opens).toBe("00:00");
+    expect(schema.openingHoursSpecification[0].closes).toBe("23:59");
+    expect([...html.matchAll(/<details><summary>/g)].length).toBe(7);
+    expect(html).not.toMatch(/TechNova|lorem ipsum|empresa fictícia/i);
+  });
+
+  test("omits unconfirmed personal and contact information", () => {
+    const result = updateBusinessSchema(schema, WHATSAPP_NUMBER, businessDetails);
+    expect(result.telephone).toBeUndefined();
+    expect(result.contactPoint.url).toBeUndefined();
+    expect(result.address.streetAddress).toBeUndefined();
+    expect(result.address.postalCode).toBeUndefined();
+    expect(result.email).toBeUndefined();
+    expect(result.taxID).toBeUndefined();
+    expect(result.sameAs).toBeUndefined();
+  });
+
+  test("uses the configured number and verified details without mutating the source", () => {
+    const details = { ...businessDetails, streetAddress: "Test street", postalCode: "00000-000", email: "test@example.test", cnpj: "TEST", socialLinks: ["https://example.test"], servedCities: ["Test city"] };
+    const result = updateBusinessSchema(schema, configuredNumber, details);
+    expect(result.telephone).toBe("+" + configuredNumber);
+    expect(result.contactPoint.telephone).toBe(result.telephone);
+    expect(result.contactPoint.url).toBe(createWhatsAppLink(configuredNumber));
+    expect(result.address.streetAddress).toBe(details.streetAddress);
+    expect(result.address.postalCode).toBe(details.postalCode);
+    expect(result.areaServed.at(-1).name).toBe("Test city");
+    expect(result.sameAs).toEqual(details.socialLinks);
+    expect(result.email).toBe(details.email);
+    expect(result.taxID).toBe(details.cnpj);
+    expect(schema.address.streetAddress).toBeUndefined();
+    expect(schema.areaServed).toHaveLength(2);
+  });
+});

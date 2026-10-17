@@ -1,40 +1,65 @@
-# Validação executada
+# Validação — Datar Soluções Tecnológicas
 
-Verificações realizadas no workspace em 16/10/2026, com Bun 1.4.0 e o navegador Chromium da prévia colaborativa. Não foi feito commit, push ou publicação.
+Verificação local em **17 de outubro de 2026**. O commit da paleta azul e branca já existia em `96fefd0`. As alterações desta etapa adaptam o site aos serviços de TI da Datar; não houve push nem criação de PR.
 
-## Código e servidor
+## Comandos do projeto
 
-- `bun run check`: aprovado. Compilação dos módulos para navegador, resolução dos imports, IDs únicos, âncoras e assets locais.
-- `bun test`: **8 testes aprovados, 0 falhas, 43 asserções**. Validação, normalização, limites dos campos, catálogo de serviços, configuração ausente ou inválida e codificação de caracteres especiais na URL.
-- Servidor local iniciado em `http://localhost:3000`.
-- HTML, CSS, módulos, favicon e SVG retornaram HTTP 200 com os tipos de conteúdo esperados.
-- Caminhos inexistentes, `.git`, arquivos do servidor e tentativas de sair dos diretórios públicos retornaram HTTP 404. HEAD retornou corpo vazio; POST retornou HTTP 405.
-- Nenhuma dependência instalada. Não há linter configurado; o check de compilação não é apresentado como lint.
+- `npx --yes --package=bun bun run check`: aprovado; compila JavaScript para navegador e verifica imports, assets, IDs e âncoras.
+- `npx --yes --package=bun bun test`: **15 testes aprovados, 0 falhas e 157 asserções**.
+- `git diff --check`: sem erros de whitespace. O Git pode emitir avisos da conversão LF/CRLF no Windows.
+- `npx --yes --package=bun bun run start`: servidor disponível na porta 3000; resposta HTTP 200 conferida.
+- Não há scripts separados de lint, type-check ou build no package.json. O check inclui compilação, mas não equivale a um linter.
 
-## Interações no navegador
+Bun, Playwright e axe-core foram executados pelo cache temporário do npm; não foram adicionadas dependências nem arquivos de lock ao projeto.
 
-- Menu de 360 px: abriu, permitiu Tab para o primeiro link, fechou com Escape e devolveu o foco ao botão.
-- Ao navegar pelo menu, o painel fechou e o foco passou para a seção de destino.
-- FAQ abriu e fechou com Enter após navegação por Tab.
-- Envio vazio exibiu três erros associados aos campos e moveu o foco para o resumo. Os links do resumo focaram os campos correspondentes.
-- Envio válido gerou a prévia com nome, serviço e descrição. No modo demonstrativo, o link do WhatsApp permaneceu oculto e sem URL; não houve navegação externa.
-- A cópia pela Clipboard API funcionou. A falha da API foi simulada separadamente: o texto ficou selecionado e uma orientação de cópia manual foi anunciada.
-- A edição dos campos descartou a prévia anterior e removeu qualquer URL preparada.
-- O CTA do card de automações selecionou o serviço correspondente no formulário.
-- Documento sem scripts testado em iframe com sandbox: navegação disponível, FAQ nativo e formulário desabilitado com explicação visível.
+## Navegador e responsividade
 
-## Responsividade e acessibilidade
+A prévia colaborativa falhou duas vezes com `Preview automation snapshot timed out after 15000ms.`. O fallback usou Playwright temporário com o Microsoft Edge instalado, em modo headless.
 
-Larguras verificadas: **360, 390, 560, 768, 800, 1024, 1100 e 1440 px**. Em todas, a largura do documento correspondeu à viewport, sem rolagem horizontal ou conteúdo principal fora da tela. Os serviços alternaram entre uma, duas e quatro colunas, e o menu móvel apareceu abaixo de 800 px. Houve inspeção visual do hero, serviços, benefícios e contato, além dos testes de teclado no FAQ.
+Larguras: **360, 390, 560, 768, 800, 1024, 1100 e 1440 px**. Nenhuma apresentou overflow horizontal. Houve inspeção de screenshots locais do hero em 390 e 1440 px. A marca é textual, sem logotipo inventado; o favicon usa a letra D.
 
-O axe-core 4.10.3 foi carregado temporariamente apenas na sessão de auditoria, sem adicioná-lo ao projeto. As regras WCAG A/AA e boas práticas não apontaram violações automáticas na página desktop; o estado de erro do formulário em 360 px também não apresentou violações nas regras WCAG testadas.
+O script temporário `node "$env:TEMP\datar-browser-audit.cjs"` verificou:
 
-Como o axe não resolve todos os gradientes, uma verificação adicional substituiu temporariamente os fundos pelas cores mais claras dos gradientes e o texto em gradiente por sua cor mais escura. Após clarear os textos secundários, 136 nós passaram pela regra de contraste, sem violações. Setas e elementos ilustrativos mantiveram resultados inconclusivos na ferramenta. O campo de descrição, também inconclusivo na execução global, foi conferido separadamente: não estava encoberto, com contraste calculado de **16,90:1** para texto e **7,31:1** para placeholder.
+- Oito CTAs: cabeçalho, hero, três serviços, CTA final, contato no rodapé e botão flutuante.
+- Telefone provisório: links ficam na seção de contato, sem URL externa nem abertura de outra aba; a exibição usa +55 (DD) XXXXX-XXXX.
+- Menu móvel abre, fecha com Escape e mantém a navegação existente.
+- O CTA de redes seleciona o serviço correspondente no formulário quando o telefone está pendente.
+- Validação dos campos, resumo de erros, prévia contextual, invalidação após edição e FAQ nativo.
+- Um número de teste foi aplicado apenas à resposta do módulo em uma sessão isolada do navegador. Os oito CTAs produziram a origem wa.me, o telefone correto, mensagens em pt-BR com a marca, target=_blank e rel=noopener noreferrer.
+- Nessa sessão, o telefone formatado, o telefone do JSON-LD e a URL gerada pelo formulário ficaram consistentes com a configuração. O texto decodificado da URL foi igual à prévia.
+- Cópia pela Clipboard API e alternativa de seleção manual verificadas. A comparação do clipboard normaliza as quebras CRLF do Windows.
+- FAQ operável com Enter e formulário desabilitado com explicação quando o JavaScript está desligado.
+- Nenhum erro de runtime capturado nos fluxos. Nenhuma mensagem foi enviada e nenhum contato externo foi aberto.
 
-A regra de `prefers-reduced-motion` foi ativada temporariamente pelo CSSOM: a animação passou a `none`, as transições a `0s` e a rolagem a `auto`; a regra original foi restaurada. Isso verifica a aplicação do CSS, sem afirmar uma emulação da preferência no sistema operacional. Os campos móveis usam 16 px para evitar o zoom automático do Safari ao receber foco; esse tamanho foi confirmado no navegador em 360 px.
+O número de teste não foi salvo no código de produção; `WHATSAPP_NUMBER` continua sendo um placeholder.
 
-Não foram observados erros de runtime nos fluxos testados. As requisições normais da página usaram apenas assets locais. As medições ocorreram em ambiente local, sem limitação de rede; não constituem benchmark de produção.
+## Acessibilidade e contraste
 
-## Limites
+`node "$env:TEMP\datar-accessibility.cjs"` executou axe-core **4.14.0** nas regras WCAG A/AA e WCAG 2.1 A/AA, em 1440 e 390 px, com os sete itens do FAQ abertos e também com erros do formulário visíveis. Resultado: **nenhuma violação automática nas regras executadas**. Um problema de correspondência entre o nome acessível e o texto do wordmark foi corrigido e revalidado.
 
-Os testes visuais utilizaram Chromium com viewports redimensionadas. Não houve teste em dispositivos físicos, Safari, Firefox ou leitor de tela, nem auditoria manual completa de conformidade WCAG. O número real do WhatsApp continua vazio: a geração da URL com número configurado foi testada em unidade, sem abrir ou enviar mensagem a um contato externo. Não há backend, persistência ou atendimento real nesta demonstração.
+A regra de contraste teve resultados inconclusivos em alguns elementos com gradientes; não se apresenta esse resultado como auditoria completa. Uma checagem adicional dos tokens calculou:
+
+- Texto principal no branco: **14,41:1**.
+- Texto secundário no tint azul: **6,46:1**.
+- Texto sutil no tint azul: **5,28:1**.
+- Branco no botão principal: **5,46:1**.
+- Azul no fundo de hover secundário: **4,62:1**.
+- Extremo mais claro do gradiente de título no tint azul: **4,22:1**, acima de 3:1 para texto grande.
+- Borda de campo na superfície: **3,54:1**.
+- Erro no fundo de erro: **5,91:1**.
+
+O foco por teclado foi confirmado como visível, com contorno azul sólido. Os valores dos tokens da paleta não foram alterados nesta etapa. Novos estilos usam os tokens existentes.
+
+## Conteúdo e SEO
+
+- Um único h1, hierarquia de títulos, idioma pt-BR, nome consistente, título e descrições locais verificados.
+- Dados estruturados LocalBusiness com Cascavel/PR/BR, área regional sem inventar cidades, disponibilidade semanal 24 horas e ContactPoint para WhatsApp.
+- Campos comerciais desconhecidos ficam em `js/config.js` com TODOs; valores não confirmados não são publicados no JSON-LD. O telefone e a URL de contato são acrescentados quando o número real é configurado.
+- Sete perguntas frequentes, três serviços, cinco diferenciais, seção de acolhimento, quatro etapas e lista de cidades explicitamente pendente.
+- Busca por nome antigo, lorem ipsum e conteúdo demonstrativo: nenhuma ocorrência no conteúdo público. O nome antigo permanece apenas no teste negativo que impede sua reintrodução.
+
+## Antes de publicar
+
+Preencher o telefone real, confirmar certificações, cidades atendidas, endereço/CEP, CNPJ, e-mail e perfis oficiais conforme a intenção de divulgação. A lista pública de cidades ainda é um placeholder; os demais dados não foram inventados. Definir domínio público e imagem social antes de acrescentar metadados que dependem desses dados.
+
+Não houve teste em dispositivo físico, Safari, Firefox, leitor de tela ou avaliação manual completa de conformidade. A verificação de formato de telefone não comprova a existência de uma conta de WhatsApp. A operação de atendimento e as certificações dependem de confirmação da empresa.
