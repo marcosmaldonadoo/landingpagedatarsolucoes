@@ -2,7 +2,12 @@ import { resolve, sep } from "node:path";
 
 const root = resolve(import.meta.dir, "..");
 const port = Number(process.env.PORT || 3000);
-const publicFiles = new Set(["/index.html", "/styles.css", "/favicon.svg"]);
+const publicFiles = new Set([
+  "/index.html", "/styles.css", "/favicon.svg",
+  "/brandig/datar/01_Logotipos/datar-wordmark.svg",
+  "/brandig/datar/01_Logotipos/datar-wordmark-com-descritor.svg",
+  "/brandig/datar/03_Icones_Digitais/datar-favicon-180.png"
+]);
 const publicDirectories = [resolve(root, "assets"), resolve(root, "js")];
 
 const server = Bun.serve({

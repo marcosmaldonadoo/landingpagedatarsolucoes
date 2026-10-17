@@ -1,0 +1,44 @@
+DATAR SOLUÇÕES TECNOLÓGICAS — KIT OFICIAL (PROPOSTA TÉCNICA FINAL)
+Data: 17 de outubro de 2026
+Conceito: Tecnologia Próxima | Variação 3: Wordmark Próximo
+
+1. VERSÃO PRINCIPAL
+A assinatura oficial é o nome "datar." em azul #315B83, com ponto turquesa #4FC3C8.
+O descritivo "SOLUÇÕES TECNOLÓGICAS" aparece somente quando a reprodução permite leitura confortável.
+
+2. APLICAÇÕES
+- Site e cabeçalhos: datar-wordmark.svg ou datar-horizontal.svg.
+- Propostas e contratos: datar-wordmark-com-descritor.svg.
+- Cartões: horizontal ou wordmark, conforme o layout.
+- Redes sociais/WhatsApp: símbolo isolado em fundo azul.
+- Favicon: versão simplificada sem o ponto para preservar legibilidade.
+- Uniformes/bordados/etiquetas: escolher versão monocromática quando necessário.
+
+3. ÁREA DE PROTEÇÃO
+Manter uma margem mínima equivalente a 25% da largura do símbolo D no conjunto com símbolo;
+no wordmark isolado, manter margem livre igual à altura aproximada da letra "a".
+
+4. USO DE COR E ACESSIBILIDADE
+Azul principal #315B83; azul apoio #6EACC2; turquesa #4FC3C8;
+fundo #E7F0F3; texto #183247; branco #FFFFFF.
+Texto branco sobre azul principal: razão de contraste 7.11:1.
+Texto escuro sobre turquesa: 6.29:1.
+Evitar texto branco pequeno sobre turquesa (2.11:1).
+
+5. NÃO ALTERAR
+Não distorcer, girar, inclinar, trocar as cores, aplicar sombras ou contornos no logotipo.
+Não reconstruir as letras com outra fonte em cada peça: use estes SVGs.
+Não usar o nome completo em tamanho reduzido se ficar ilegível.
+
+6. FONTES PARA COMUNICAÇÃO
+Títulos: Manrope; corpo e materiais técnicos: Inter (Google Fonts).
+O logo já está convertido em caminhos vetoriais: não depende de instalação das fontes.
+Nenhum arquivo de fonte é redistribuído.
+
+7. AVISO DE PRODUÇÃO
+Estas artes são uma reconstrução vetorial fiel à direção aprovada, a partir de referências visuais geradas por IA.
+Não se trata de vetorização idêntica pixel a pixel de uma arte-mestra preexistente.
+Conferir proporções e legibilidade em materiais reais e pesquisar disponibilidade no INPI antes de registro.
+
+8. STATUS
+Kit concluído para aprovação de produção. Sua landing page não foi alterada nesta entrega.

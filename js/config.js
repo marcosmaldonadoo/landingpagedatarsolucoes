@@ -4,9 +4,11 @@ export const BUSINESS_NAME = "Datar Soluções Tecnológicas";
 export const WHATSAPP_NUMBER = "55DDXXXXXXXXX";
 
 export const whatsappMessages = Object.freeze({
-  general: "Olá, Datar Soluções Tecnológicas! Preciso de suporte de TI. Posso contar o que está acontecendo e informar minha cidade?",
+  general: "Olá, Datar Soluções Tecnológicas! Gostaria de solicitar um orçamento. Posso contar do que preciso e informar minha cidade?",
   hardware: "Olá, Datar Soluções Tecnológicas! Preciso de conserto ou manutenção do meu computador. Posso descrever o problema?",
-  network: "Olá, Datar Soluções Tecnológicas! Preciso de ajuda com a rede da minha empresa. Posso contar como ela funciona e o que preciso melhorar?",
+  network: "Olá, Datar Soluções Tecnológicas! Gostaria de um orçamento para a rede de computadores da minha empresa. Posso explicar a necessidade?",
+  support: "Olá, Datar Soluções Tecnológicas! Preciso de suporte técnico de TI. Posso descrever o problema e informar minha cidade?",
+  other: "Olá, Datar Soluções Tecnológicas! Tenho uma necessidade de TI e gostaria de uma orientação. Posso explicar o que preciso?",
   consulting: "Olá, Datar Soluções Tecnológicas! Gostaria de uma consultoria de TI. Posso explicar minha necessidade e pedir uma orientação?"
 });
 
@@ -23,8 +25,9 @@ export const businessDetails = Object.freeze({
 });
 
 export const services = Object.freeze({
-  hardware: "Conserto e manutenção preventiva",
-  consulting: "Consultoria de TI",
-  network: "Redes para empresas",
+  network: "Montagem e organização de redes empresariais",
+  support: "Suporte técnico de TI",
+  hardware: "Manutenção preventiva e corretiva de hardware",
+  other: "Outros serviços de TI",
   guidance: "Ainda não sei do que preciso"
 });

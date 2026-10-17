@@ -1,0 +1,19 @@
+{
+  "marca": "Datar Soluções Tecnológicas",
+  "conceito": "Tecnologia Próxima",
+  "variacao": "3 — Wordmark Próximo",
+  "cores": {
+    "principal": "#315B83",
+    "apoio": "#6EACC2",
+    "destaque": "#4FC3C8",
+    "fundo": "#E7F0F3",
+    "texto": "#183247",
+    "branco": "#FFFFFF"
+  },
+  "slogan": "Sua rede em ordem. Seu negócio em movimento.",
+  "tipografia": {
+    "titulo": "Manrope",
+    "texto": "Inter"
+  },
+  "observacao": "Arte vetorial redesenhada com base no conceito aprovado; validar antes de produção em escala."
+}

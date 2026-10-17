@@ -1,0 +1,11 @@
+/* DATAR - Paleta oficial aprovada. 17/10/2026 */
+:root {
+  --datar-azul-principal: #315B83;
+  --datar-azul-apoio: #6EACC2;
+  --datar-turquesa: #4FC3C8;
+  --datar-fundo: #E7F0F3;
+  --datar-texto: #183247;
+  --datar-branco: #FFFFFF;
+  --datar-fonte-titulos: "Manrope", sans-serif;
+  --datar-fonte-texto: "Inter", sans-serif;
+}
