@@ -1,0 +1,13 @@
+{
+  "name": "technova-landing-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page demonstrativa da TechNova, sem dependências externas.",
+  "scripts": {
+    "dev": "bun --watch scripts/serve.js",
+    "start": "bun scripts/serve.js",
+    "test": "bun test",
+    "check": "bun scripts/check.js"
+  }
+}
