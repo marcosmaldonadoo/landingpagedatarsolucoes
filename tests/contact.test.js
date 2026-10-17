@@ -3,8 +3,8 @@ import { getContactMode, prepareContact, validateProject } from "../js/contact.j
 
 const validProject = {
   name: "Ana Luísa",
-  service: "landing-page",
-  description: "Quero apresentar meu estúdio e facilitar pedidos de orçamento."
+  service: "hardware",
+  description: "O computador da minha loja está lento e preciso de ajuda."
 };
 
 describe("Validação do orçamento", () => {
@@ -43,7 +43,7 @@ describe("Preparação segura do contato", () => {
     expect(result.mode).toBe("demo");
     expect(result.url).toBeNull();
     expect(result.message).toContain("Nome: Ana Luísa");
-    expect(result.message).toContain("Serviço: Landing page");
+    expect(result.message).toContain("Serviço: Conserto e manutenção preventiva");
   });
 
   test("configurações inválidas nunca produzem um link de contato", () => {
@@ -62,7 +62,7 @@ describe("Preparação segura do contato", () => {
   });
 
   test("a URL conserva acentos, quebras de linha e caracteres especiais com encodeURIComponent", () => {
-    const description = "Minha ideia: integração A&B? plano=novo #site + café ☕\nSegunda linha com 100% de atenção.";
+    const description = "Meu problema: conexão A&B? plano=novo #rede + café ☕\nSegunda linha com 100% de atenção.";
     const result = prepareContact({ ...validProject, description }, "5511999999999");
     const url = new URL(result.url);
     expect(result.mode).toBe("whatsapp");

@@ -1,9 +1,9 @@
 {
-  "name": "technova-landing-page",
+  "name": "datar-solucoes-tecnologicas",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Landing page demonstrativa da TechNova, sem dependências externas.",
+  "description": "Site da Datar Soluções Tecnológicas: suporte de TI em Cascavel e região.",
   "scripts": {
     "dev": "bun --watch scripts/serve.js",
     "start": "bun scripts/serve.js",

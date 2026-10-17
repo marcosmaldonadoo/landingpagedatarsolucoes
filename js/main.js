@@ -1,5 +1,5 @@
-import { services, siteConfig } from "./config.js";
-import { getContactMode, prepareContact, validateProject } from "./contact.js";
+import { BUSINESS_NAME, businessDetails, services, siteConfig, whatsappMessages } from "./config.js";
+import { createWhatsAppLink, formatWhatsAppNumber, getContactMode, prepareContact, updateBusinessSchema, validateProject } from "./contact.js";
 
 function setupNavigation() {
   const header = document.querySelector(".site-header");
@@ -149,7 +149,7 @@ function setupContact() {
     } else if (contact.mode === "unavailable") {
       explanation.textContent = "O número de contato não está configurado corretamente. Você pode copiar a mensagem; nenhum contato externo será aberto.";
     } else {
-      explanation.textContent = "Modo demonstrativo: esta é apenas uma prévia local. Nenhuma mensagem foi enviada e nenhum contato externo será aberto.";
+      explanation.textContent = "O WhatsApp ainda não foi configurado. Você pode copiar esta mensagem; nenhum contato externo será aberto.";
     }
 
     result.hidden = false;
@@ -158,7 +158,7 @@ function setupContact() {
 
   document.querySelector("#copy-message").addEventListener("click", async () => {
     try {
-      if (!navigator.clipboard?.writeText) throw new Error("Clipboard indisponível");
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
       await navigator.clipboard.writeText(preview.value);
       status.textContent = "Mensagem copiada. Nenhuma mensagem foi enviada.";
     } catch {
@@ -189,7 +189,61 @@ function setupPrivacyLink() {
   });
 }
 
+export function setupWhatsApp(number = siteConfig.whatsappNumber) {
+  const available = getContactMode(number) === "whatsapp";
+  document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+    const context = link.dataset.whatsapp;
+    const message = whatsappMessages[context] || whatsappMessages.general;
+    const url = createWhatsAppLink(number, message);
+    if (context !== "general") link.dataset.service = context;
+    link.href = url || "#contato";
+    link.rel = "noopener noreferrer";
+    if (url) {
+      link.target = "_blank";
+      link.setAttribute("aria-label", `${link.textContent.trim()} com a ${BUSINESS_NAME} pelo WhatsApp (abre em outra aba)`);
+      link.removeAttribute("aria-describedby");
+    } else {
+      link.removeAttribute("target");
+      link.setAttribute("aria-label", `${link.textContent.trim()} — WhatsApp em configuração; preparar mensagem para a ${BUSINESS_NAME}`);
+      link.setAttribute("aria-describedby", "whatsapp-availability");
+    }
+  });
+  document.querySelectorAll("[data-whatsapp-number]").forEach(element => {
+    element.textContent = formatWhatsAppNumber(number);
+  });
+  const availability = document.querySelector("#whatsapp-availability");
+  availability.hidden = available;
+  if (!available) availability.textContent = "WhatsApp em configuração. Enquanto isso, prepare e copie sua mensagem no formulário.";
+}
+
+function setupBusinessDetails() {
+  const cities = document.querySelector("#served-cities");
+  if (businessDetails.servedCities.length) {
+    cities.previousElementSibling.textContent = "Cidades vizinhas atendidas:";
+    cities.replaceChildren(...businessDetails.servedCities.map(city => {
+      const item = document.createElement("li");
+      item.textContent = city;
+      return item;
+    }));
+  }
+  if (businessDetails.certifications.length) {
+    const certifications = document.querySelector("[data-certifications]");
+    certifications.textContent = `Certificações: ${businessDetails.certifications.join(", ")}.`;
+    certifications.hidden = false;
+  }
+  const details = [businessDetails.streetAddress, businessDetails.postalCode, businessDetails.cnpj && `CNPJ: ${businessDetails.cnpj}`, businessDetails.email].filter(Boolean);
+  if (details.length) {
+    const element = document.querySelector("[data-business-details]");
+    element.textContent = details.join(" · ");
+    element.hidden = false;
+  }
+  const schema = document.querySelector("#business-schema");
+  schema.textContent = JSON.stringify(updateBusinessSchema(JSON.parse(schema.textContent), siteConfig.whatsappNumber, businessDetails));
+}
+
 setupNavigation();
+setupWhatsApp();
+setupBusinessDetails();
 setupContact();
 setupPrivacyLink();
 document.querySelector("#current-year").textContent = String(new Date().getFullYear());

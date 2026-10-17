@@ -5,19 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#FFFFFF" />
-    <meta name="description" content="TechNova: sites, landing pages, aplicações web e automações sob medida para pequenos negócios e profissionais. Conheça este projeto demonstrativo." />
+    <meta name="description" content="Datar Soluções Tecnológicas: suporte de TI em Cascavel PR e região, com atendimento 24 horas. Manutenção de computadores, consultoria de TI e redes para empresas." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:title" content="TechNova — Seu negócio, um passo à frente no digital" />
-    <meta property="og:description" content="Design com propósito e tecnologia sob medida. Conheça as soluções digitais da TechNova, um projeto demonstrativo." />
-    <title>TechNova — Seu negócio, um passo à frente no digital</title>
+    <meta property="og:title" content="Datar Soluções Tecnológicas | Suporte de TI em Cascavel PR, 24 horas" />
+    <meta property="og:description" content="Suporte rápido, especializado e certificado em Cascavel e região. Conserto e manutenção de computadores, consultoria de TI e redes para empresas. Fale com a Datar." />
+    <title>Datar Soluções Tecnológicas | Suporte de TI em Cascavel PR, 24 horas</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
     <script type="module" src="./js/main.js"></script>
+    <!-- TODO: Complete verified contact, address and coverage details in js/config.js before publishing. -->
+    <script id="business-schema" type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Datar Soluções Tecnológicas",
+  "description": "Manutenção de computadores em Cascavel, suporte de TI em Cascavel PR, consultoria de TI e redes para empresas. Atendimento 24 horas em Cascavel e região.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cascavel",
+    "addressRegion": "PR",
+    "addressCountry": "BR"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Cascavel"
+    },
+    {
+      "@type": "Place",
+      "name": "Região de Cascavel; cidades vizinhas a confirmar"
+    }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Atendimento via WhatsApp",
+    "availableLanguage": "pt-BR"
+  }
+}</script>
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-
     <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" /></symbol>
       <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12" /></symbol>
@@ -29,174 +72,94 @@
       <symbol id="icon-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 4-5 8-8 9-3-1-8-5-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
       <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/><path d="M8 11.5h.01M12 11.5h.01M16 11.5h.01"/></symbol>
     </svg>
-
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#inicio" aria-label="TechNova — início">
-          <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><path d="m3 29 10-23h8l-5 12h8l9-9-10 23h-8l5-12h-8Z" fill="currentColor" /></svg>
-          <span>Tech<span class="brand-light">Nova</span><span class="brand-dot">.</span></span>
-        </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Abrir menu de navegação" hidden>
-          <span></span><span></span>
-        </button>
+        <a class="brand" href="#inicio" aria-label="Datar Soluções Tecnológicas — início"><span>Datar <span class="brand-light">Soluções Tecnológicas</span></span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Abrir menu de navegação" hidden><span></span><span></span></button>
         <nav id="site-navigation" class="site-navigation" aria-label="Navegação principal">
-          <a href="#servicos">Soluções</a>
-          <a href="#beneficios">Por que a TechNova</a>
-          <a href="#processo">Como funciona</a>
-          <a href="#faq">Dúvidas</a>
-          <a class="button button-small header-cta" href="#contato">Vamos conversar <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></a>
+          <a href="#servicos">Serviços</a><a href="#beneficios">Por que Datar</a><a href="#processo">Etapas</a><a href="#faq">Dúvidas</a>
+          <a class="button button-small header-cta" href="#contato" data-whatsapp="general" target="_blank" rel="noopener noreferrer" aria-label="Chamar no WhatsApp com a Datar Soluções Tecnológicas pelo WhatsApp (abre em outra aba)">Chamar no WhatsApp <svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></a>
         </nav>
       </div>
     </header>
-
     <main id="conteudo" tabindex="-1">
       <section id="inicio" class="hero" aria-labelledby="hero-title">
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="container hero-grid">
           <div class="hero-content">
-            <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span> PEQUENAS IDEIAS. NOVAS POSSIBILIDADES.</p>
-            <h1 id="hero-title">Seu negócio,<br />um passo à frente<br /><span class="gradient-text">no digital.</span></h1>
-            <p class="hero-description">Transformamos ideias em sites, aplicações e automações que aproximam sua marca das pessoas e simplificam o seu dia a dia.</p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#contato">Solicitar um orçamento <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></a>
-              <a class="text-link" href="#servicos">Explorar soluções <span aria-hidden="true">↓</span></a>
-            </div>
-            <p class="hero-note"><svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg> Sem compromisso. Tudo começa com uma conversa.</p>
+            <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span> CASCAVEL E REGIÃO · ATENDIMENTO 24 HORAS</p>
+            <h1 id="hero-title">Suporte de TI em Cascavel.<br /><span class="gradient-text">Rápido, especializado e certificado.</span></h1>
+            <p class="hero-description">Em Cascavel e região, cuidamos do computador da sua casa e da tecnologia da sua empresa. Você não precisa entender de informática: explique o que aconteceu, e a Datar cuida do resto com você.</p>
+            <div class="hero-actions"><a class="button button-primary" href="#contato" data-whatsapp="general" target="_blank" rel="noopener noreferrer" aria-label="Pedir ajuda no WhatsApp com a Datar Soluções Tecnológicas pelo WhatsApp (abre em outra aba)">Pedir ajuda no WhatsApp <svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></a><a class="text-link" href="#servicos">Conhecer os serviços <span aria-hidden="true">↓</span></a></div>
+            <p class="hero-note"><svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg> Sem julgamento e sem complicação. Atendimento 24 horas.</p>
           </div>
           <div class="hero-visual" aria-hidden="true">
-            <div class="visual-label"><span class="tiny-cross">+</span> TECNOLOGIA QUE CONECTA <span class="visual-line"></span></div>
+            <div class="visual-label"><span class="tiny-cross">+</span> TECNOLOGIA COM TRANQUILIDADE <span class="visual-line"></span></div>
             <img class="core-illustration" src="./assets/digital-core.svg" alt="" width="620" height="560" fetchpriority="high" />
-            <div class="floating-label label-top"><span class="mini-icon"><svg class="icon"><use href="#icon-browser" /></svg></span><span>Da sua ideia.<small>Para o próximo nível.</small></span><span class="mini-spark">✦</span></div>
-            <div class="floating-label label-bottom"><span class="connection-dot"></span><span>Design + código + propósito</span><svg class="icon"><use href="#icon-arrow-up" /></svg></div>
-            <div class="visual-coordinates"><span>ESTRATÉGIA EM CADA CONEXÃO</span><span>01 — ∞</span></div>
+            <div class="floating-label label-top"><span class="mini-icon"><svg class="icon" aria-hidden="true"><use href="#icon-shield" /></svg></span><span>Conte com a Datar.<small>Suporte especializado.</small></span><span class="mini-spark">✦</span></div>
+            <div class="floating-label label-bottom"><span class="connection-dot"></span><span>Seu computador. Nosso cuidado.</span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg></div>
+            <div class="visual-coordinates"><span>CASCAVEL · PARANÁ</span><span>SUPORTE 24 HORAS</span></div>
           </div>
         </div>
-        <div class="container hero-foundation">
-          <span class="foundation-label">DO SEU JEITO.<br /><strong>PARA O SEU NEGÓCIO.</strong></span>
-          <span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Design com propósito</span>
-          <span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Tecnologia sob medida</span>
-          <span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Experiências que conectam</span>
-        </div>
+        <div class="container hero-foundation"><span class="foundation-label">PARA SUA CASA.<br /><strong>PARA SUA EMPRESA.</strong></span><span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Atendimento rápido</span><span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Profissionais certificados</span><span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Explicações sem complicação</span></div>
       </section>
-
       <section id="servicos" class="section services-section" aria-labelledby="services-title" tabindex="-1">
         <div class="container">
-          <div class="section-heading heading-split">
-            <div><p class="eyebrow"><span>01 /</span> NOSSAS SOLUÇÕES</p><h2 id="services-title">Sua ideia.<br />A tecnologia certa.</h2></div>
-            <p>Cada negócio tem um momento.<br />Encontre a solução para o seu próximo passo.</p>
-          </div>
+          <div class="section-heading heading-split"><div><p class="eyebrow"><span>01 /</span> COMO PODEMOS AJUDAR</p><h2 id="services-title">Seu problema tem atenção.<br /><span class="muted-heading">Você tem orientação.</span></h2></div><p>Serviços de TI para pessoas, lojas e empresas<br />de Cascavel e região.</p></div>
           <div class="services-grid">
-            <article class="service-card service-card-featured">
-              <div class="card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#icon-browser" /></svg></span><span class="card-index">01</span></div>
-              <h3>Sites que<br />abrem portas.</h3>
-              <p>Uma presença digital profissional para apresentar sua marca, contar sua história e facilitar novos contatos.</p>
-              <div class="service-tags"><span>Institucional</span><span>Responsivo</span></div>
-              <a class="card-link" href="#contato" data-service="site">Quero meu site <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></a>
-            </article>
-            <article class="service-card">
-              <div class="card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#icon-target" /></svg></span><span class="card-index">02</span></div>
-              <h3>Landing pages<br />com direção.</h3>
-              <p>Uma página com mensagem clara e foco na ação que importa: apresentar sua oferta e iniciar uma conversa.</p>
-              <div class="service-tags"><span>Campanhas</span><span>Conversão</span></div>
-              <a class="card-link" href="#contato" data-service="landing-page">Quero minha landing page <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></a>
-            </article>
-            <article class="service-card">
-              <div class="card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#icon-layers" /></svg></span><span class="card-index">03</span></div>
-              <h3>Aplicações que<br />fazem sentido.</h3>
-              <p>Ferramentas web pensadas para seus processos, com as funcionalidades de que seu negócio realmente precisa.</p>
-              <div class="service-tags"><span>Sistemas web</span><span>Sob medida</span></div>
-              <a class="card-link" href="#contato" data-service="web-app">Vamos criar uma aplicação <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></a>
-            </article>
-            <article class="service-card">
-              <div class="card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bolt" /></svg></span><span class="card-index">04</span></div>
-              <h3>Menos tarefas.<br />Mais possibilidades.</h3>
-              <p>Automações e integrações que conectam ferramentas e ajudam a reduzir o trabalho repetitivo da rotina.</p>
-              <div class="service-tags"><span>Integrações</span><span>Fluxos</span></div>
-              <a class="card-link" href="#contato" data-service="automation">Quero simplificar minha rotina <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></a>
-            </article>
+            <article class="service-card service-card-featured"><div class="card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#icon-browser" /></svg></span><span class="card-index">01</span></div><h3>Conserto e manutenção preventiva</h3><p>Seu computador não liga, trava ou está lento? Identificamos a causa, fazemos o reparo e cuidamos da limpeza e revisão para ajudar a evitar novas falhas.</p><div class="service-tags"><span>Para sua casa, loja ou escritório.</span></div><a class="card-link" href="#contato" data-whatsapp="hardware" target="_blank" rel="noopener noreferrer" aria-label="Pedir ajuda com meu computador com a Datar Soluções Tecnológicas pelo WhatsApp (abre em outra aba)">Pedir ajuda com meu computador <svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></a></article>
+            <article class="service-card"><div class="card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#icon-target" /></svg></span><span class="card-index">02</span></div><h3>Consultoria de TI</h3><p>Não sabe qual equipamento comprar ou como organizar a tecnologia do negócio? Explicamos as opções e indicamos o que faz sentido para sua rotina.</p><div class="service-tags"><span>Para quem quer decidir sem complicação.</span></div><a class="card-link" href="#contato" data-whatsapp="consulting" target="_blank" rel="noopener noreferrer" aria-label="Conversar sobre consultoria com a Datar Soluções Tecnológicas pelo WhatsApp (abre em outra aba)">Conversar sobre consultoria <svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></a></article>
+            <article class="service-card"><div class="card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#icon-layers" /></svg></span><span class="card-index">03</span></div><h3>Redes para empresas</h3><p>Montamos e organizamos a conexão entre computadores, internet e impressoras para sua equipe trabalhar com mais estabilidade.</p><div class="service-tags"><span>Para pequenas e médias empresas.</span></div><a class="card-link" href="#contato" data-whatsapp="network" target="_blank" rel="noopener noreferrer" aria-label="Pedir ajuda com a rede com a Datar Soluções Tecnológicas pelo WhatsApp (abre em outra aba)">Pedir ajuda com a rede <svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></a></article>
           </div>
         </div>
       </section>
-
       <section id="beneficios" class="section benefits-section" aria-labelledby="benefits-title" tabindex="-1">
-        <div class="container benefits-grid">
-          <div class="benefits-intro">
-            <p class="eyebrow"><span>02 /</span> ALÉM DO CÓDIGO</p>
-            <h2 id="benefits-title">Bonito para quem vê.<br /><span class="muted-heading">Inteligente para<br />quem usa.</span></h2>
-            <p>Uma boa solução digital une o que sua marca quer comunicar ao que as pessoas precisam encontrar.</p>
-            <div class="responsive-art" aria-hidden="true">
-              <div class="art-browser"><div class="art-toolbar"><i></i><i></i><i></i><span>seu próximo capítulo</span></div><div class="art-browser-content"><div><span class="art-small-line"></span><span class="art-title-line"></span><span class="art-title-line short"></span><span class="art-button"></span></div><div class="art-orb"><span>n.</span></div></div></div>
-              <div class="art-phone"><span class="phone-speaker"></span><span class="phone-orb"></span><span class="phone-line"></span><span class="phone-line short"></span><span class="phone-button"></span></div>
-              <span class="art-caption"><svg class="icon"><use href="#icon-check" /></svg> Uma experiência. Todas as telas.</span>
-            </div>
-          </div>
-          <div class="benefits-list">
-            <article><span class="benefit-number">01</span><div><h3>Seu negócio cabe em qualquer tela.</h3><p>Interfaces responsivas, com navegação fluida do celular ao computador.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></article>
-            <article><span class="benefit-number">02</span><div><h3>Personalizado de verdade.</h3><p>Design e funcionalidades alinhados à sua identidade, ao seu público e aos seus objetivos.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></article>
-            <article><span class="benefit-number">03</span><div><h3>Pessoas no centro da experiência.</h3><p>Clareza, acessibilidade e atenção aos detalhes para tornar cada interação mais simples.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></article>
-            <article><span class="benefit-number">04</span><div><h3>A solução certa para o seu momento.</h3><p>Um escopo construído a partir das suas necessidades, com espaço para evoluir.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></article>
-          </div>
-        </div>
+        <div class="container benefits-grid"><div class="benefits-intro"><p class="eyebrow"><span>02 /</span> POR QUE ESCOLHER A DATAR</p><h2 id="benefits-title">Menos preocupação.<br /><span class="muted-heading">Mais confiança para seguir.</span></h2><p>Para você, paciência e clareza. Para seu negócio, atenção à continuidade do trabalho e aos equipamentos que fazem parte da rotina.</p><p data-certifications hidden></p></div><div class="benefits-list"><article><span class="benefit-number">01</span><div><h3>Atendimento rápido</h3><p>Entendemos sua urgência e orientamos os próximos passos, sem prometer um prazo antes de avaliar o caso.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg></article>
+            <article><span class="benefit-number">02</span><div><h3>Técnicos especializados</h3><p>Cuidamos de computadores e redes com atenção ao que você precisa, em casa ou na empresa.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg></article>
+            <article><span class="benefit-number">03</span><div><h3>Profissionais certificados</h3><p>Conhecimento técnico com explicações claras. Você pode pedir informações sobre as certificações na conversa.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg></article>
+            <article><span class="benefit-number">04</span><div><h3>Atendimento 24 horas</h3><p>Você pode pedir suporte a qualquer hora. A forma e o prazo do atendimento são alinhados conforme a necessidade.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg></article>
+            <article><span class="benefit-number">05</span><div><h3>Suporte local</h3><p>Estamos em Cascavel, no Paraná, e atendemos a região. Consulte a disponibilidade para sua cidade.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg></article></div></div>
       </section>
-
-      <section id="processo" class="section process-section" aria-labelledby="process-title" tabindex="-1">
-        <div class="container">
-          <div class="section-heading heading-split"><div><p class="eyebrow"><span>03 /</span> DO PRIMEIRO OLÁ AO PLANO</p><h2 id="process-title">Simples desde<br />a primeira conversa.</h2></div><p>Você traz a ideia.<br />A gente organiza os próximos passos.</p></div>
-          <ol class="process-grid">
-            <li><div class="step-top"><span class="step-number">01</span><span class="step-line"></span><svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></div><h3>Vamos nos conhecer.</h3><p>Conte pelo WhatsApp o que você tem em mente. Pode ser uma ideia inicial ou um projeto já definido.</p><span class="step-label">PRIMEIRO CONTATO</span></li>
-            <li><div class="step-top"><span class="step-number">02</span><span class="step-line"></span><svg class="icon" aria-hidden="true"><use href="#icon-target" /></svg></div><h3>Entender antes de criar.</h3><p>Conversamos sobre seu negócio, seu público e o que a solução precisa fazer para ajudar na sua rotina.</p><span class="step-label">ENTENDIMENTO DAS NECESSIDADES</span></li>
-            <li><div class="step-top"><span class="step-number">03</span><span class="step-line"></span><svg class="icon" aria-hidden="true"><use href="#icon-layers" /></svg></div><h3>Um caminho claro.</h3><p>Você recebe uma proposta com escopo, etapas e investimento para avaliar com tranquilidade.</p><span class="step-label">PLANEJAMENTO E PROPOSTA</span></li>
-          </ol>
-        </div>
+      <section id="sem-medo" class="section reassurance-section" aria-labelledby="reassurance-title" tabindex="-1">
+        <div class="container benefits-grid"><div class="benefits-intro"><p class="eyebrow"><span>03 /</span> PODE PERGUNTAR SEM MEDO</p><h2 id="reassurance-title">Você não precisa entender.<br /><span class="muted-heading">A gente explica e cuida.</span></h2><p>Tem receio de apertar o botão errado ou de perder um arquivo? Você não precisa tentar consertar sozinho. Estamos aqui para ajudar, sem julgamento.</p></div><div class="benefits-list"><article><span class="benefit-number">01</span><div><h3>Conte do seu jeito.</h3><p>“A tela apagou” ou “está muito lento” já é um começo. Nós fazemos as perguntas necessárias.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></article>
+            <article><span class="benefit-number">02</span><div><h3>Entenda antes de decidir.</h3><p>Explicamos o que encontramos, o que pode ser feito e quanto custa. Não precisa autorizar nada sem entender.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg></article>
+            <article><span class="benefit-number">03</span><div><h3>Seus arquivos merecem cuidado.</h3><p>Avise quais arquivos são importantes. Combinamos os cuidados antes de procedimentos que possam afetar seus dados.</p></div><svg class="icon" aria-hidden="true"><use href="#icon-shield" /></svg></article></div></div>
       </section>
-
-      <section id="faq" class="section faq-section" aria-labelledby="faq-title" tabindex="-1">
-        <div class="container faq-grid">
-          <div><p class="eyebrow"><span>04 /</span> SEM COMPLICAÇÃO</p><h2 id="faq-title">Boas perguntas.<br /><span class="muted-heading">Respostas diretas.</span></h2><p class="faq-intro">O primeiro passo fica mais fácil<br />quando tudo está claro.</p><a class="text-link cyan-link" href="#contato">Vamos conversar sobre sua ideia <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></a></div>
-          <div class="faq-list">
-            <details><summary>Quanto custa desenvolver um projeto?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>O investimento depende do tipo de solução, das funcionalidades e do conteúdo. A proposta é preparada depois de entendermos suas necessidades, com escopo e valores definidos antes do desenvolvimento.</p></div></details>
-            <details><summary>Quanto tempo leva para ficar pronto?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>O prazo varia conforme a complexidade e a disponibilidade dos materiais. As etapas, as entregas e o cronograma são alinhados na proposta, antes do início do projeto.</p></div></details>
-            <details><summary>Preciso ter textos e identidade visual prontos?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>Não é necessário ter tudo pronto para a primeira conversa. Podemos identificar quais materiais já existem e incluir no planejamento o que ainda precisa ser produzido ou contratado.</p></div></details>
-            <details><summary>O atendimento pode ser feito a distância?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>O projeto pode ser alinhado por conversas e reuniões online. Os canais, horários e momentos de acompanhamento são combinados de acordo com as necessidades do trabalho.</p></div></details>
-            <details><summary>Domínio, hospedagem e manutenção estão incluídos?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>Esses itens são detalhados na proposta. Custos recorrentes, serviços de terceiros e eventual manutenção são apresentados separadamente para que você saiba o que está contratando.</p></div></details>
-            <details><summary>Esta é uma empresa real? Posso enviar o formulário?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>A TechNova é uma empresa fictícia neste projeto demonstrativo. Você pode testar o formulário: enquanto não houver um número real configurado, ele apenas prepara uma prévia local da mensagem, sem enviar dados ou abrir um contato fictício.</p></div></details>
-          </div>
-        </div>
-      </section>
-
-      <section id="contato" class="section contact-section" aria-labelledby="contact-title" tabindex="-1">
-        <div class="container contact-grid">
-          <div class="contact-intro"><p class="eyebrow"><span>05 /</span> VAMOS CONSTRUIR ALGO?</p><h2 id="contact-title">Seu próximo<br />capítulo começa<br /><span class="gradient-text">com um olá.</span></h2><p>Sua ideia não precisa estar pronta.<br />A conversa é o lugar certo para começar.</p><div class="contact-points"><span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Proposta adequada ao seu negócio</span><span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Escopo claro, sem compromisso inicial</span></div><div class="contact-privacy"><svg class="icon" aria-hidden="true"><use href="#icon-shield" /></svg><p>Seus dados ficam nesta página até você decidir abrir uma conversa no WhatsApp. <a href="#privacidade">Saiba mais sobre privacidade.</a></p></div></div>
-          <div class="contact-card">
-            <div class="form-heading"><span class="form-kicker">DA IDEIA À CONVERSA</span><span id="contact-mode" class="demo-badge">MODO DEMONSTRATIVO</span></div>
-            <h3>O que vamos criar juntos?</h3>
-            <p class="form-description">Preencha os campos e prepare sua mensagem.</p>
-            <noscript><p class="notice">Ative o JavaScript para preparar a mensagem. Nenhum dado será enviado por este formulário enquanto o JavaScript estiver desativado.</p></noscript>
-            <form id="contact-form" aria-label="Solicitar orçamento">
+      <section id="processo" class="section process-section" aria-labelledby="process-title" tabindex="-1"><div class="container"><div class="section-heading heading-split"><div><p class="eyebrow"><span>04 /</span> COMO FUNCIONA</p><h2 id="process-title">Um passo de cada vez.<br /><span class="muted-heading">Com você por perto.</span></h2></div><p>Da primeira mensagem à orientação final,<br />você sabe o que está acontecendo.</p></div><ol class="process-grid"><li><div class="step-top"><span class="step-number">01</span><span class="step-line"></span><svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></div><h3>Chame no WhatsApp</h3><p>Conte o que aconteceu e informe sua cidade. Não precisa saber o nome da peça nem usar termos técnicos.</p></li>
+            <li><div class="step-top"><span class="step-number">02</span><span class="step-line"></span><svg class="icon" aria-hidden="true"><use href="#icon-target" /></svg></div><h3>Entendemos o problema</h3><p>Fazemos uma avaliação inicial e combinamos como continuar o diagnóstico, sem adivinhar a solução.</p></li>
+            <li><div class="step-top"><span class="step-number">03</span><span class="step-line"></span><svg class="icon" aria-hidden="true"><use href="#icon-layers" /></svg></div><h3>Você aprova a solução</h3><p>Explicamos o serviço, os valores e o prazo antes de executar. Você decide com clareza.</p></li>
+            <li><div class="step-top"><span class="step-number">04</span><span class="step-line"></span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg></div><h3>Conferimos com você</h3><p>Depois do serviço, verificamos o funcionamento e orientamos os cuidados e os próximos passos.</p></li></ol></div></section>
+      <section id="regiao" class="section service-area-section" aria-labelledby="area-title" tabindex="-1"><div class="container"><p class="eyebrow"><span>05 /</span> PERTO DE VOCÊ</p><h2 id="area-title">Cascavel e região.<br /><span class="muted-heading">Consulte sua cidade.</span></h2><p class="area-description">A Datar Soluções Tecnológicas está em Cascavel, no Paraná. Atendemos a região; confirme pelo WhatsApp a cobertura, o deslocamento e a forma de atendimento para seu endereço.</p><p class="area-description">Cidades vizinhas: lista de cobertura a confirmar.</p><ul id="served-cities" class="area-cities"><li>[PREENCHER: cidades vizinhas atendidas]</li></ul><a class="text-link cyan-link" href="#contato">Consultar disponibilidade <svg class="icon" aria-hidden="true"><use href="#icon-arrow" /></svg></a></div></section>
+      <section id="faq" class="section faq-section" aria-labelledby="faq-title" tabindex="-1"><div class="container faq-grid"><div><p class="eyebrow"><span>06 /</span> SUAS DÚVIDAS IMPORTAM</p><h2 id="faq-title">Pode perguntar.<br /><span class="muted-heading">A resposta é simples.</span></h2><p class="faq-intro">Se ainda tiver uma dúvida, conte com a Datar. Não precisa saber de informática para conversar.</p><a class="text-link cyan-link" href="#contato">Quero conversar <svg class="icon" aria-hidden="true"><use href="#icon-arrow" /></svg></a></div><div class="faq-list"><details><summary>Em quanto tempo vocês respondem?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>Oferecemos atendimento rápido, mas o tempo de resposta e de solução depende da demanda e do problema. Ao chamar, conte o que parou de funcionar e se há uma urgência. Combinamos os próximos passos sem prometer um prazo fixo.</p></div></details>
+            <details><summary>Posso pedir atendimento de madrugada ou no fim de semana?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>Sim. A Datar oferece atendimento 24 horas, todos os dias. Chame no WhatsApp a qualquer hora; a forma do suporte e a disponibilidade de visita são alinhadas na conversa.</p></div></details>
+            <details><summary>O que é manutenção preventiva?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>É uma revisão para ajudar a evitar problemas: verificamos o funcionamento, a limpeza e as condições do computador. Explicamos o que precisa de cuidado antes de qualquer serviço.</p></div></details>
+            <details><summary>Como funciona o orçamento?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>Primeiro entendemos a necessidade. Se for preciso avaliar o equipamento ou visitar o local, explicamos as condições e eventuais custos antes. O serviço, as peças e o prazo são apresentados para sua aprovação.</p></div></details>
+            <details><summary>Vocês atendem lojas e pequenas empresas?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>Sim. Ajudamos com manutenção de computadores, consultoria de TI e montagem de redes para pequenas e médias empresas em Cascavel e região. O objetivo é reduzir interrupções e organizar a tecnologia da rotina.</p></div></details>
+            <details><summary>Meus arquivos ficam seguros durante o serviço?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>Combinamos os cuidados com seus arquivos e pedimos autorização antes de procedimentos que possam afetá-los. Faça uma cópia de segurança quando possível. Se o computador não liga, avise; não prometemos recuperação de dados sem avaliação e você não precisa enviar senhas pelo WhatsApp.</p></div></details>
+            <details><summary>Vocês atendem minha cidade?<span class="faq-plus" aria-hidden="true"></span></summary><div class="faq-answer"><p>Atendemos Cascavel, no Paraná, e a região. Para cidades vizinhas, confirme a cobertura antes de combinar o serviço. Informe sua cidade e consulte a disponibilidade, o deslocamento e a forma de atendimento pelo WhatsApp.</p></div></details></div></div></section>
+      <section id="contato" class="section contact-section" aria-labelledby="contact-title" tabindex="-1"><div class="container contact-grid">
+        <div class="contact-intro"><p class="eyebrow"><span>07 /</span> ATENDIMENTO 24 HORAS</p><h2 id="contact-title">Precisa de ajuda?<br /><span class="gradient-text">Fale com a Datar.</span></h2><p>Computador com problema ou empresa precisando de suporte? Conte o que aconteceu. Vamos orientar você com clareza.</p><div class="hero-actions"><a class="button button-primary" href="#contato" data-whatsapp="general" target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp com a Datar Soluções Tecnológicas pelo WhatsApp (abre em outra aba)">Conversar pelo WhatsApp <svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></a></div><p class="contact-number">WhatsApp: <span data-whatsapp-number>Número pendente de configuração</span></p><p id="whatsapp-availability" class="notice" role="status">WhatsApp em configuração. Enquanto isso, prepare e copie sua mensagem no formulário.</p><div class="contact-points"><span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Cascavel, Paraná, e região</span><span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Atendimento 24 horas, todos os dias</span><span><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Serviço e valores combinados antes</span></div><div class="contact-privacy"><svg class="icon" aria-hidden="true"><use href="#icon-shield" /></svg><p>Seus dados ficam nesta página até você decidir abrir o WhatsApp. Não informe senhas. <a href="#privacidade">Saiba mais sobre privacidade.</a></p></div></div>
+        <div class="contact-card"><div class="form-heading"><span class="form-kicker">SE PREFERIR, ORGANIZE SEU PEDIDO</span><span id="contact-mode" class="demo-badge">WHATSAPP EM CONFIGURAÇÃO</span></div><h3>Conte o que está acontecendo.</h3><p class="form-description">O formulário é opcional. Prepare uma mensagem e confira antes de abrir o WhatsApp.</p><noscript><p class="notice">Ative o JavaScript para configurar os botões do WhatsApp e preparar a mensagem. Nenhum dado será enviado por este formulário enquanto o JavaScript estiver desativado.</p></noscript><form id="contact-form" aria-label="Preparar pedido de suporte de TI">
               <div id="form-errors" class="error-summary" role="alert" tabindex="-1" aria-labelledby="form-errors-title" hidden><h4 id="form-errors-title">Confira os campos abaixo:</h4><ul></ul></div>
               <fieldset id="contact-fields" disabled>
-                <legend class="sr-only">Detalhes do seu projeto. Todos os campos são obrigatórios.</legend>
+                <legend class="sr-only">Detalhes do seu pedido de suporte. Todos os campos são obrigatórios.</legend>
                 <div class="field"><label for="name">Seu nome <span>(obrigatório)</span></label><input id="name" name="name" type="text" autocomplete="name" placeholder="Como podemos chamar você?" required minlength="2" maxlength="100" aria-describedby="name-error" /><p id="name-error" class="field-error" hidden></p></div>
-                <div class="field"><label for="service">O que você precisa? <span>(obrigatório)</span></label><select id="service" name="service" required aria-describedby="service-error"><option value="">Selecione uma solução</option></select><p id="service-error" class="field-error" hidden></p></div>
-                <div class="field"><label for="description">Conte um pouco da sua ideia <span>(obrigatório)</span></label><textarea id="description" name="description" rows="4" placeholder="Qual é o seu negócio e o que você gostaria de construir ou melhorar?" required minlength="20" maxlength="1500" aria-describedby="description-hint description-error"></textarea><div class="field-meta"><span id="description-hint">De 20 a 1.500 caracteres.</span><span id="description-count" aria-hidden="true">0 / 1.500</span></div><p id="description-error" class="field-error" hidden></p></div>
+                <div class="field"><label for="service">O que você precisa? <span>(obrigatório)</span></label><select id="service" name="service" required aria-describedby="service-error"><option value="">Selecione um serviço</option></select><p id="service-error" class="field-error" hidden></p></div>
+                <div class="field"><label for="description">O que está acontecendo? <span>(obrigatório)</span></label><textarea id="description" name="description" rows="4" placeholder="Conte o problema, se é em casa ou na empresa e em qual cidade você está. Não informe senhas." required minlength="20" maxlength="1500" aria-describedby="description-hint description-error"></textarea><div class="field-meta"><span id="description-hint">De 20 a 1.500 caracteres.</span><span id="description-count" aria-hidden="true">0 / 1.500</span></div><p id="description-error" class="field-error" hidden></p></div>
                 <button class="button button-primary form-submit" type="submit">Preparar mensagem <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg></button>
               </fieldset>
               <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-              <p id="demo-explanation" class="demo-explanation"><span class="status-dot" aria-hidden="true"></span> Esta é uma demonstração. Nenhuma mensagem será enviada.</p>
+              <p id="demo-explanation" class="demo-explanation"><span class="status-dot" aria-hidden="true"></span> WhatsApp em configuração. Você pode preparar e copiar a mensagem; nada será enviado automaticamente.</p>
               <section id="contact-result" class="contact-result" aria-labelledby="result-title" tabindex="-1" hidden>
                 <h4 id="result-title">Sua mensagem está pronta.</h4>
                 <p id="result-explanation">Confira a prévia abaixo. Nenhuma mensagem foi enviada.</p>
                 <label class="sr-only" for="message-preview">Prévia da mensagem para WhatsApp</label><textarea id="message-preview" rows="8" readonly></textarea>
-                <div class="result-actions"><button id="copy-message" type="button" class="button button-secondary">Copiar mensagem</button><a id="whatsapp-link" class="button button-primary" target="_blank" rel="noopener noreferrer" hidden>Abrir WhatsApp <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg><span class="sr-only"> (abre em outra aba)</span></a></div>
+                <div class="result-actions"><button id="copy-message" type="button" class="button button-secondary">Copiar mensagem</button><a id="whatsapp-link" class="button button-primary" target="_blank" rel="noopener noreferrer" aria-label="Abrir sua mensagem para a Datar Soluções Tecnológicas no WhatsApp em outra aba" hidden>Abrir WhatsApp <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up" /></svg><span class="sr-only"> (abre em outra aba)</span></a></div>
               </section>
-            </form>
-          </div>
-        </div>
-      </section>
+            </form></div>
+      </div></section>
     </main>
-
-    <footer class="site-footer">
-      <div class="container"><div class="footer-main"><div><a class="brand" href="#inicio" aria-label="TechNova — voltar ao início"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><path d="m3 29 10-23h8l-5 12h8l9-9-10 23h-8l5-12h-8Z" fill="currentColor" /></svg><span>Tech<span class="brand-light">Nova</span><span class="brand-dot">.</span></span></a><p>Ideias conectadas a novas possibilidades.</p></div><nav aria-label="Navegação do rodapé"><a href="#servicos">Soluções</a><a href="#processo">Como funciona</a><a href="#faq">Dúvidas</a><a href="#contato">Contato</a></nav><a class="back-top" href="#inicio">Voltar ao topo <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><p>TechNova © <span id="current-year">2026</span> <span aria-hidden="true">·</span> Projeto demonstrativo. Empresa fictícia.</p><details id="privacidade" class="privacy-details"><summary>Privacidade</summary><div><p>Esta página não usa cookies, ferramentas de análise, rastreadores ou armazenamento local. Os campos são processados no seu navegador e não são enviados a um servidor pela aplicação.</p><p>Se um número real for configurado, o botão “Abrir WhatsApp” levará você a um serviço externo com o texto da mensagem no endereço. O envio final depende da sua ação no WhatsApp e das políticas desse serviço. Evite incluir informações sensíveis no teste.</p><p>O servidor de hospedagem poderá registrar dados técnicos de acesso, conforme a configuração do ambiente.</p></div></details></div></div>
-    </footer>
+    <footer class="site-footer"><div class="container"><div class="footer-main"><div><a class="brand" href="#inicio" aria-label="Datar Soluções Tecnológicas — voltar ao início"><span>Datar <span class="brand-light">Soluções Tecnológicas</span></span></a><p>Cascavel, Paraná, Brasil · Atendimento 24 horas.</p><p>Suporte de TI para Cascavel e região.</p><p>WhatsApp: <span data-whatsapp-number>Número pendente de configuração</span></p><p data-business-details hidden></p><p><a class="text-link cyan-link" href="#contato" data-whatsapp="general" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Datar com a Datar Soluções Tecnológicas pelo WhatsApp (abre em outra aba)">Falar com a Datar <svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></a></p></div><nav aria-label="Navegação do rodapé"><a href="#servicos">Serviços</a><a href="#regiao">Área atendida</a><a href="#faq">Dúvidas</a><a href="#contato">Contato</a></nav><a class="back-top" href="#inicio">Voltar ao topo <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><p>Datar Soluções Tecnológicas © <span id="current-year">2026</span> · Cascavel, PR.</p><details id="privacidade" class="privacy-details"><summary>Privacidade</summary><div><p>Esta página não usa cookies, ferramentas de análise, rastreadores ou armazenamento local. Os campos são processados no navegador e não são enviados a um servidor pela aplicação.</p><p>Quando o número estiver configurado, os botões de WhatsApp abrirão outra aba com uma mensagem no endereço do serviço externo. Você decide se envia a mensagem no WhatsApp, conforme as políticas desse serviço. Não inclua senhas ou outras informações sensíveis.</p><p>O servidor de hospedagem poderá registrar dados técnicos de acesso conforme sua configuração.</p></div></details></div></div></footer>
+    <a class="button button-primary floating-whatsapp" href="#contato" data-whatsapp="general" target="_blank" rel="noopener noreferrer" aria-label="Pedir suporte com a Datar Soluções Tecnológicas pelo WhatsApp (abre em outra aba)">Pedir suporte <svg class="icon" aria-hidden="true"><use href="#icon-chat" /></svg></a>
   </body>
 </html>

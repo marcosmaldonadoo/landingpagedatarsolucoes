@@ -1,79 +1,65 @@
-# TechNova — landing page demonstrativa
+# Datar Soluções Tecnológicas
 
-Empresa fictícia de soluções digitais. O projeto não apresenta clientes, depoimentos, métricas, certificações ou resultados reais.
+Site de serviços de TI para Cascavel, Paraná, e região: conserto e manutenção preventiva de computadores, consultoria de TI e redes para pequenas e médias empresas. Atendimento 24 horas.
 
-## Executar localmente
+## Executar
 
-Pré-requisito: [Bun](https://bun.sh/). Não há pacotes para instalar.
+Requer Bun. Não há dependências de projeto para instalar.
 
 ```sh
 bun run dev
-```
-
-Abra **http://localhost:3000**. O servidor observa alterações no código do servidor; atualize a aba para ver mudanças no HTML, CSS ou JavaScript. Para usar outra porta:
-
-```sh
-PORT=3001 bun run dev
-```
-
-Como alternativa, por serem arquivos estáticos, é possível servir com Python 3:
-
-```sh
-python3 -m http.server 3000 --bind 127.0.0.1
-```
-
-Use um servidor HTTP em vez de abrir `index.html` diretamente: os módulos JavaScript precisam de uma origem HTTP. O servidor Bun é uma ferramenta local de desenvolvimento e não deve ser usado como servidor de produção.
-
-## Arquitetura
-
-HTML semântico, CSS e módulos JavaScript nativos, sem framework, dependências de runtime, fontes remotas ou etapa de build obrigatória. A solução mantém a página leve e permite hospedagem estática. O Bun serve os arquivos e executa os testes.
-
-| Arquivo | Responsabilidade |
-| --- | --- |
-| `index.html` | Conteúdo, SEO, navegação, serviços, benefícios, processo, FAQ, formulário e privacidade |
-| `styles.css` | Tokens visuais, layout mobile-first, estados de foco e responsividade |
-| `assets/digital-core.svg` | Ilustração tecnológica original, vetorial e local |
-| `favicon.svg` | Símbolo da marca fictícia |
-| `js/config.js` | Número do WhatsApp e catálogo de serviços |
-| `js/contact.js` | Validação, normalização, mensagem e URL de WhatsApp |
-| `js/main.js` | Menu, interação do formulário, seleção de serviço e cópia da prévia |
-| `scripts/serve.js` | Servidor local Bun, restrito aos arquivos públicos |
-| `scripts/check.js` | Verificação de JavaScript, imports, assets e âncoras |
-| `tests/contact.test.js` | Testes das regras de contato e dos limites de validação |
-
-## Configurar o WhatsApp
-
-Edite apenas `whatsappNumber` em `js/config.js`. Use um número real autorizado com DDI e DDD, apenas dígitos, sem `+`, espaços ou pontuação. O formato aceito é de 8 a 15 dígitos, sem zero inicial; a aplicação não verifica se existe uma conta nesse número.
-
-- **Vazio:** modo demonstrativo, com prévia e cópia; nenhum link externo é criado.
-- **Formato inválido:** aviso de contato indisponível; a prévia e a cópia continuam disponíveis.
-- **Número configurado:** o visitante revisa a prévia e pode abrir `https://wa.me/…?text=…` em outra aba. A mensagem usa `encodeURIComponent`. O envio final é uma ação do visitante no WhatsApp.
-
-Não há redirecionamento automático, contato fictício, backend ou envio de dados do formulário a um servidor pela aplicação. A prévia é descartada quando os campos mudam. Os campos aceitam nome de 2 a 100 caracteres, serviço válido e descrição de 20 a 1.500 caracteres, após remover espaços nas extremidades.
-
-## Acessibilidade e comportamento
-
-- Link para pular ao conteúdo, landmarks semânticos e foco visível.
-- Menu móvel com `aria-expanded`, Escape, fechamento ao sair e links acessíveis sem JavaScript.
-- FAQ e privacidade com `details`/`summary` nativos, operáveis por teclado.
-- Campos rotulados, mensagens individuais e resumo de erros com links e foco após envio inválido.
-- Animação de entrada finita e respeito a `prefers-reduced-motion`.
-- Formulário desabilitado com explicação quando o JavaScript não executa, evitando envio acidental dos campos pela URL.
-- Cópia com Clipboard API e seleção manual como alternativa quando a API não estiver disponível.
-
-Não há cookies, analytics, fontes externas nem armazenamento no navegador. A hospedagem pode registrar dados técnicos de acesso. O botão opcional do WhatsApp compartilha o texto no endereço do serviço externo, apenas após ação do visitante. Não inclua dados sensíveis no teste.
-
-## Verificar
-
-```sh
 bun run check
 bun test
 ```
 
-`check` valida a compilação dos módulos para navegador, os imports e as referências locais, sem gerar arquivos de build. Não há linter instalado. Os testes cobrem validação de campos, serviço desconhecido, normalização, modo demonstrativo, configuração inválida e codificação da URL. A revisão visual e interativa deve usar o servidor local nas larguras de 360 a 1440 px.
+Abra http://localhost:3000. Para iniciar sem observar alterações, use `bun run start`. HTML, CSS e JavaScript são estáticos; atualize a página após editar. O servidor Bun é destinado ao desenvolvimento local, não à hospedagem de produção.
 
-Consulte [VALIDACAO.md](./VALIDACAO.md) para os resultados efetivamente obtidos, os métodos usados e os limites das verificações no navegador.
+## Arquitetura
 
-## Limites da demonstração
+- `index.html`: wordmark textual, conteúdo em pt-BR, metadados, dados estruturados, navegação, serviços, diferenciais, acolhimento, etapas, cobertura, FAQ, contato e privacidade.
+- `styles.css`: tokens azul e branco, componentes responsivos e estados de foco.
+- `js/config.js`: nome, telefone, quatro mensagens contextuais, catálogo de serviços e campos comerciais a preencher.
+- `js/contact.js`: validação, formatação do telefone, construção única da URL e atualização segura do JSON-LD.
+- `js/main.js`: menu, configuração dos CTAs, dados comerciais, prévia, cópia e mensagens do formulário.
+- `assets/digital-core.svg`: ilustração decorativa; não é um logotipo da empresa.
+- `favicon.svg`: letra D, sem simular uma certificação ou um logotipo oficial.
+- `scripts/serve.js`: servidor local restrito aos arquivos públicos.
+- `scripts/check.js`: compilação JavaScript para navegador e verificação de imports, IDs, assets e âncoras.
+- `tests/`: testes do formulário, mensagens, telefone, CTAs, identidade e dados estruturados.
 
-O formulário depende de JavaScript e não armazena solicitações. Não há atendimento real ou número de contato configurado. Domínio canônico, imagem social, conteúdo jurídico definitivo e infraestrutura de hospedagem devem ser definidos antes de uma eventual publicação. Nenhum serviço externo ou auditoria manual completa com leitor de tela está incluído.
+## Configuração obrigatória antes de publicar
+
+Edite `js/config.js`. `WHATSAPP_NUMBER` é a única fonte do telefone. Substitua `55DDXXXXXXXXX` por 55 + DDD + número real autorizado, somente dígitos, sem espaços, sinal de mais ou pontuação. A validação verifica o formato, não a existência da conta.
+
+Enquanto o valor for provisório, vazio ou inválido, os oito CTAs apontam para a seção de contato, mostram um aviso de configuração e não abrem um número fictício. O formulário continua permitindo preparar e copiar uma mensagem. Com o número real configurado, os CTAs abrem o WhatsApp em outra aba com `noopener noreferrer`, texto codificado e rótulos acessíveis. O envio final sempre depende da ação do visitante.
+
+As mensagens `general`, `hardware`, `network` e `consulting` ficam no mesmo arquivo. O telefone legível do contato e rodapé é gerado da constante, inclusive o formato provisório +55 (DD) XXXXX-XXXX. Não substitua esse texto diretamente no HTML.
+
+### Campos a preencher
+
+Todos os campos de `businessDetails` têm TODOs em inglês e começam vazios:
+
+- `certifications`: somente nomes comprovados. A comunicação menciona profissionais certificados conforme o briefing; confirme a comprovação antes de publicar, sem inventar certificações.
+- `streetAddress` e `postalCode`: endereço e CEP reais, se puderem ser publicados.
+- `cnpj`: CNPJ real, se for divulgado.
+- `email`: endereço de e-mail público autorizado.
+- `socialLinks`: URLs dos perfis oficiais; não há links fictícios.
+- `servedCities`: apenas cidades vizinhas com cobertura confirmada. A lista sinalizada em `index.html` é substituída automaticamente ao preencher este campo.
+
+CNPJ, e-mail, endereço e certificações só aparecem na página quando preenchidos. Endereço completo, CEP, telefone, e-mail, CNPJ e redes sociais não são inventados no JSON-LD: os campos opcionais só são incluídos quando configurados. O telefone e o link do WhatsApp são derivados da mesma constante. A localidade Cascavel/PR/BR, a referência genérica à região e a disponibilidade 24/7 já constam no JSON-LD estático; o JavaScript acrescenta os detalhes reais.
+
+TODO: definir o domínio público e uma imagem social oficial antes de adicionar URL canônica, og:url ou og:image. Nenhum endereço de site foi presumido.
+
+## Comportamento e privacidade
+
+O contato direto pelo WhatsApp não exige preencher o formulário. O formulário opcional aceita nome de 2 a 100 caracteres, serviço do catálogo e descrição de 20 a 1.500 caracteres. Há resumo de erros, foco nos campos, prévia, cópia pela Clipboard API e seleção manual como alternativa. Alterar os campos invalida a prévia anterior. Os CTAs de serviços preservam a seleção do serviço no formulário quando o telefone está pendente.
+
+Não há envio automático, backend, armazenamento local, cookies, analytics ou bibliotecas externas de runtime. O envio pelo WhatsApp depende do visitante e das políticas do serviço externo. Não solicite senhas. A hospedagem pode registrar dados técnicos de acesso.
+
+Sem JavaScript, o conteúdo, as âncoras, as perguntas e a privacidade continuam acessíveis. O formulário fica desabilitado com explicação visível; os CTAs não apontam para nenhum número externo.
+
+## Verificação e limites
+
+`bun run check` verifica a compilação para navegador e referências locais, sem gerar artefatos. `bun test` executa os testes automatizados. Não há scripts separados de lint, type-check ou build. Não se adicionaram dependências ao projeto.
+
+Consulte `VALIDACAO.md` para os resultados, métodos e limites da validação. Antes de publicar, preencha os dados, confirme certificações, cidades, condições de atendimento e texto de privacidade. Não há promessa de prazo fixo de resposta, recuperação de dados ou visita imediata durante a madrugada.

@@ -42,4 +42,4 @@ const server = Bun.serve({
   }
 });
 
-console.info(`TechNova disponível em http://localhost:${server.port}`);
+console.info(`Datar Soluções Tecnológicas disponível em http://localhost:${server.port}`);
