@@ -1,55 +1,40 @@
-# Validação — identidade oficial Datar
+# Validação — chamadas para ação e experiência Datar
 
-Verificação local em 17/10/2026, na branch `feat/identidade-oficial-datar`. Nenhum merge, push ou publicação foi realizado.
+Revisão de 18/10/2026 na branch `fix/cta-and-ux`, baseada na main `23a9aa3`. Esta validação trata as alterações desta branch; os testes visuais da identidade feitos anteriormente não comprovam a aparência desta versão.
 
-## Escopo
+## Mudanças verificadas
 
-- Wordmark Próximo e favicon oficiais, sem alteração da geometria. SHA-256 dos 35 arquivos recebidos em `brandig/datar/`: nenhum arquivo modificado. O nome da pasta recebida foi preservado.
-- Paleta aprovada centralizada em CSS, Manrope e Inter locais com licenças OFL. Cores semânticas de erro e sucesso preservadas para os estados do formulário.
-- Posicionamento principal em redes empresariais para comércio e pequenas e médias empresas de Cascavel-PR. Suporte técnico, manutenção, outros serviços de TI e atendimento residencial complementam a oferta.
-- Slogan oficial no hero, rodapé e JSON-LD. Sem alegações de certificação, clientes, resultados ou prazos de resposta garantidos.
+- A chamada principal prioriza orçamento de rede. As demais chamadas preservam o contexto de rede, suporte, manutenção ou outro pedido.
+- Com número válido, os links usam `wa.me`, mensagem codificada, nova aba e `noopener noreferrer`. O envio continua dependendo da ação do visitante no WhatsApp.
+- Sem destinatário, os botões dizem “Preparar pedido”, levam ao formulário e não abrem outra aba. O aviso de indisponibilidade aparece junto à primeira chamada e no contato. Preparar e copiar não são apresentados como envio à Datar.
+- O número começa vazio e só é exibido quando válido. O botão flutuante é ocultado no início, contato e rodapé; sem IntersectionObserver, permanece oculto.
+- Cascavel é a única cidade da cobertura estática no JSON-LD. Cidades adicionais só aparecem após confirmação na configuração. Não há marcadores internos de preenchimento na página.
+- Textos auxiliares usam 0,875rem (14px na configuração padrão), campos e corpo usam 1rem (16px). Tracking dos títulos é relativo ao tamanho da fonte. O menu móvel passa a ser usado abaixo de 1000px.
+- Orientações repetidas foram reunidas nas quatro etapas. A aprovação prévia, os cuidados com arquivos e o atendimento residencial continuam presentes.
+- A demonstração de rede mostra conexão do provedor, roteador, pontos de rede e equipamentos. É identificada como esquema ilustrativo, sem alegar projeto ou resultado de cliente.
+- Logotipos, fontes e arquivos do kit oficial permanecem sem alterações.
 
-## Comandos e resultados
+## Verificação automatizada
 
-Bun não está no PATH deste ambiente; executado pelo pacote temporário, sem adicionar dependências ao projeto:
+Sem novas dependências no projeto. Bun foi executado por pacote temporário:
 
-- `npx --yes --package=bun bun run check`: aprovado; compilação JavaScript para navegador, imports, assets, IDs e âncoras locais.
-- `npx --yes --package=bun bun test`: 17 testes aprovados, zero falhas, 202 asserções, três arquivos.
-- `git diff --check`: sem erros de whitespace; Git apenas informa a conversão de LF para CRLF configurada no Windows.
-- `npx --yes --package=bun bun run start`: servidor local disponível em localhost:3000.
-- Checagem HTTP por Node/fetch: página, favicon, dois logotipos, ícone Apple e duas fontes retornaram 200 e os tipos MIME esperados.
-- Não existem comandos separados de lint, type-check ou build no package.json.
+- `npx --yes --package=bun bun test`: 20 testes, zero falhas. Inclui configuração ausente/inválida/válida, mensagens contextuais, normalização, limites de campos, identidade, dados estruturados e pares de contraste.
+- `npx --yes --package=bun bun run check`: JavaScript compilado para navegador; imports, assets, IDs e âncoras locais verificados.
+- `node --check js/main.js` e `node --check js/contact.js`: sintaxe aprovada.
+- `git diff --check`: sem erros.
 
-## Navegador e responsividade
+Um harness temporário com jsdom executou o JavaScript compilado e o HTML desta branch, com destinatário ausente e destinatário exclusivo de teste. Foram aprovadas 176 verificações de comportamento: nove CTAs em cada estado, seleção de serviço, foco, erros, prévia, invalidação da prévia, cópia, alternativa manual, menu e Escape, cobertura vazia, ausência de JavaScript e ausência de IntersectionObserver. As interseções das seções e o media query foram simulados; esse teste não calcula layout, visibilidade geométrica nem contraste renderizado. Nenhuma mensagem externa foi enviada e o número de teste não foi persistido no código de produção.
 
-O preview colaborativo permitiu validar DOM, fontes, formulário, FAQ, menu e ausência de overflow. As capturas iniciais apresentaram distorções; duas tentativas posteriores retornaram `Preview automation snapshot timed out after 15000ms.`. Por isso a revisão visual foi concluída com Playwright temporário e Microsoft Edge local, sem instalar dependências no repositório.
+## Impeccable e limite visual
 
-Comandos de auditoria temporários:
+Foi executado um único scan estático de `index.html` com o Impeccable. O detector apontou cinco avisos de padding e um de uso de Inter. O código usa `padding-block` nas seções e espaçamento na faixa de abertura, além de contêineres com margens laterais; os avisos estáticos não confirmam que o texto toca as bordas. Inter foi mantida por fazer parte da identidade aprovada, junto de Manrope. Nenhuma regra foi desabilitada para ocultar os avisos.
 
-- `node "$env:TEMP/datar-identity-audit.cjs"`: aprovado. Larguras 360, 390, 560, 768, 800, 1024, 1100 e 1440 px, sem rolagem horizontal. Capturas desktop e mobile inspecionadas em `$env:TEMP/datar-desktop.png` e `$env:TEMP/datar-mobile.png`.
-- Menu móvel e Escape; seleção contextual de serviço; erros, prévia e invalidação do formulário; cópia e alternativa manual; FAQ por teclado; alternativa sem JavaScript: aprovados.
-- Nove CTAs verificados com um número exclusivamente de teste, substituído apenas na resposta de rede da sessão do navegador. URLs wa.me, texto codificado, nova aba, noopener/noreferrer, telefone formatado e JSON-LD consistentes. Número de teste não persistido e nenhuma mensagem enviada.
-- Manrope e Inter carregadas localmente; logotipos carregados com proporções preservadas. Sem requisições externas de fontes em produção. Nenhum erro de runtime nos fluxos auditados.
+A política do navegador deste ambiente bloqueou a abertura da prévia dos arquivos locais. Por isso, esta versão **não teve revisão visual renderizada**, medição de overflow em diferentes larguras, teste de zoom de 200%, teste físico de toque ou auditoria com leitor de tela. A revisão responsiva foi limitada ao código e aos estados de DOM. Conferir esses pontos na prévia de publicação antes de integrar.
 
-## Acessibilidade e contraste
+O teste de contraste cobre pares de tokens, incluindo branco sobre azul, texto sobre branco/fundo claro, turquesa, erros, sucesso e bordas dos campos. Isso não comprova conformidade integral com WCAG.
 
-`node "$env:TEMP/datar-accessibility.cjs"`: axe-core 4.14.0, regras WCAG A/AA e WCAG 2.1 A/AA em 1440 e 390 px, FAQ aberto e estado de erros do formulário. Zero violações automáticas nas regras executadas. Foco por teclado visível, sólido, em #315B83.
+## Dependências comerciais
 
-Há um resultado inconclusivo de contraste na seta decorativa de voltar ao topo; a auditoria automática não comprova conformidade completa. Teste adicional em `tests/contrast.test.js` verifica os pares de tokens de texto, botões, campos, erro e sucesso:
-
-| Par | Contraste |
-| --- | --- |
-| Texto #183247 no branco | 13,24:1 |
-| Azul #315B83 no fundo #E7F0F3 | 6,14:1 |
-| Branco no azul principal | 7,11:1 |
-| Texto #183247 no turquesa #4FC3C8 | 6,29:1 |
-
-Azul secundário e turquesa não são usados para texto pequeno sobre branco. O card principal usa texto e foco brancos no azul. A decoração de rede é ocultada de leitores de tela; os logotipos têm texto alternativo.
-
-## Pendências antes de publicar
-
-- Preencher `WHATSAPP_NUMBER` em `js/config.js`: permanece `55DDXXXXXXXXX`. Até lá, CTAs levam ao formulário e nenhum telefone fictício é aberto.
-- Confirmar cidades atendidas e, se houver intenção de divulgação, endereço/CEP, CNPJ, e-mail e perfis oficiais. Campos desconhecidos continuam vazios, sem inventar dados estruturados.
-- Certificações são opcionais: o conteúdo padrão não as alega; preencher somente com comprovação.
-- Definir domínio e imagem social oficial antes de incluir canonical, og:url ou og:image.
-- Não foram realizados testes em dispositivos físicos, Safari, Firefox ou leitor de tela, nem auditoria manual integral de WCAG. Disponibilidade de atendimento e abrangência comercial dependem da operação da empresa.
+- `WHATSAPP_NUMBER` permanece vazio em `js/config.js`. O problema de conversão por falta de destinatário continua pendente do número real autorizado, com DDD e código do país. O fluxo e os rótulos já estão preparados para ativá-lo pela configuração.
+- Cidades vizinhas, endereço, CEP, CNPJ, e-mail, perfis e certificações continuam dependentes de dados confirmados. Nenhum deles foi inventado.
+- O site continua estático, sem backend de envio, cookies, armazenamento local ou analytics. A hospedagem pode registrar dados técnicos de acesso.

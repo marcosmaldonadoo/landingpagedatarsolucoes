@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { getContactMode, prepareContact, validateProject } from "../js/contact.js";
+import { getContactAction, getContactMode, prepareContact, validateProject } from "../js/contact.js";
 
 const validProject = {
   name: "Ana Luísa",
@@ -43,7 +43,7 @@ describe("Preparação segura do contato", () => {
     expect(result.mode).toBe("demo");
     expect(result.url).toBeNull();
     expect(result.message).toContain("Nome: Ana Luísa");
-    expect(result.message).toContain("Serviço: Manutenção preventiva e corretiva de hardware");
+    expect(result.message).toContain("Serviço: Manutenção de computadores");
   });
 
   test("configurações inválidas nunca produzem um link de contato", () => {
@@ -72,5 +72,43 @@ describe("Preparação segura do contato", () => {
     expect(url.hash).toBe("");
     expect(result.message).toContain(description);
     expect(result.url).toContain(encodeURIComponent(description));
+  });
+});
+
+describe("Destino e promessa das chamadas para ação", () => {
+  test("sem destinatário, oferece preparar o pedido sem prometer envio", () => {
+    for (const number of ["", "55DDXXXXXXXXX", null, "123", "+55 (45) 99999-9999"]) {
+      for (const context of ["general", "network", "support", "hardware", "other"]) {
+        const action = getContactAction(number, context);
+        expect(action.href).toBe("#contact-form");
+        expect(action.external).toBe(false);
+        expect(action.label).toStartWith("Preparar pedido");
+        expect(action.ariaLabel).toContain(action.label);
+        expect(action.ariaLabel).toContain("envio à Datar indisponível");
+      }
+    }
+    expect(getContactAction("", "network").service).toBe("network");
+    expect(getContactAction("", "general").service).toBeNull();
+  });
+
+  test("com destinatário válido, usa a mensagem correspondente ao serviço", () => {
+    const number = "5545999999999";
+    for (const context of ["general", "network", "support", "hardware", "other"]) {
+      const action = getContactAction(number, context);
+      const url = new URL(action.href);
+      expect(action.external).toBe(true);
+      expect(url.origin).toBe("https://wa.me");
+      expect(url.pathname).toBe("/" + number);
+      expect(action.ariaLabel).toContain(action.label);
+      expect(action.ariaLabel).toContain("abre em outra aba");
+    }
+    expect(getContactAction(number, "network").href).toContain(encodeURIComponent("rede de computadores da minha empresa"));
+    expect(getContactAction(number, "hardware").href).toContain(encodeURIComponent("manutenção do meu computador"));
+  });
+
+  test("um contexto desconhecido usa a ação geral sem herdar propriedades", () => {
+    for (const context of ["__proto__", "toString", "unknown"]) {
+      expect(getContactAction("", context)).toEqual(getContactAction("", "general"));
+    }
   });
 });

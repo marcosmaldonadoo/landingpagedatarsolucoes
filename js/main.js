@@ -1,11 +1,11 @@
-import { BUSINESS_NAME, businessDetails, services, siteConfig, whatsappMessages } from "./config.js";
-import { createWhatsAppLink, formatWhatsAppNumber, getContactMode, prepareContact, updateBusinessSchema, validateProject } from "./contact.js";
+import { businessDetails, services, siteConfig } from "./config.js";
+import { formatWhatsAppNumber, getContactAction, getContactMode, prepareContact, updateBusinessSchema, validateProject } from "./contact.js";
 
 function setupNavigation() {
   const header = document.querySelector(".site-header");
   const navigation = document.querySelector("#site-navigation");
   const toggle = document.querySelector(".menu-toggle");
-  const mobile = window.matchMedia("(max-width: 799px)");
+  const mobile = window.matchMedia("(max-width: 999px)");
 
   function setOpen(open, restoreFocus = false) {
     navigation.hidden = mobile.matches && !open;
@@ -67,11 +67,9 @@ function setupContact() {
   }
 
   if (mode === "whatsapp") {
-    document.querySelector("#contact-mode").textContent = "CONVERSA PELO WHATSAPP";
-    document.querySelector("#demo-explanation").lastChild.textContent = " Você confere a mensagem e decide quando abrir o WhatsApp.";
-  } else if (mode === "unavailable") {
-    document.querySelector("#contact-mode").textContent = "CONTATO INDISPONÍVEL";
-    document.querySelector("#demo-explanation").lastChild.textContent = " O contato está indisponível. Você ainda pode preparar e copiar sua mensagem.";
+    document.querySelector("#contact-mode").textContent = "Prévia antes do envio";
+    document.querySelector(".form-description").textContent = "O formulário é opcional. Organize seu pedido, confira a mensagem e abra o WhatsApp para enviar.";
+    document.querySelector("#demo-explanation").textContent = "Você decide quando enviar pelo WhatsApp.";
   }
 
   function readFields() {
@@ -146,10 +144,8 @@ function setupContact() {
       explanation.textContent = "Confira o texto. O próximo botão abre outra aba; o envio é concluído por você no WhatsApp.";
       whatsappLink.href = contact.url;
       whatsappLink.hidden = false;
-    } else if (contact.mode === "unavailable") {
-      explanation.textContent = "O número de contato não está configurado corretamente. Você pode copiar a mensagem; nenhum contato externo será aberto.";
     } else {
-      explanation.textContent = "O WhatsApp ainda não foi configurado. Você pode copiar esta mensagem; nenhum contato externo será aberto.";
+      explanation.textContent = "Mensagem preparada para copiar. O contato com a Datar pelo site está indisponível no momento. Seu pedido não foi enviado.";
     }
 
     result.hidden = false;
@@ -168,10 +164,13 @@ function setupContact() {
     }
   });
 
-  document.querySelectorAll("[data-service]").forEach((link) => {
+  document.querySelectorAll("[data-whatsapp]").forEach((link) => {
     link.addEventListener("click", () => {
-      fields.service.value = link.dataset.service;
-      updateFields();
+      if (link.dataset.service) {
+        fields.service.value = link.dataset.service;
+        updateFields();
+      }
+      if (link.getAttribute("href") === "#contact-form") form.focus({ preventScroll: true });
     });
   });
 
@@ -192,34 +191,50 @@ function setupPrivacyLink() {
 export function setupWhatsApp(number = siteConfig.whatsappNumber) {
   const available = getContactMode(number) === "whatsapp";
   document.querySelectorAll("[data-whatsapp]").forEach((link) => {
-    const context = link.dataset.whatsapp;
-    const message = whatsappMessages[context] || whatsappMessages.general;
-    const url = createWhatsAppLink(number, message);
-    if (context !== "general") link.dataset.service = context;
-    link.href = url || "#contato";
-    link.rel = "noopener noreferrer";
-    if (url) {
+    const action = getContactAction(number, link.dataset.whatsapp);
+    link.href = action.href;
+    link.querySelector("[data-cta-label]").textContent = action.label;
+    link.setAttribute("aria-label", action.ariaLabel);
+    if (action.service) link.dataset.service = action.service;
+    else delete link.dataset.service;
+    if (action.external) {
       link.target = "_blank";
-      link.setAttribute("aria-label", `${link.textContent.trim()} com a ${BUSINESS_NAME} pelo WhatsApp (abre em outra aba)`);
+      link.rel = "noopener noreferrer";
       link.removeAttribute("aria-describedby");
     } else {
       link.removeAttribute("target");
-      link.setAttribute("aria-label", `${link.textContent.trim()} — WhatsApp em configuração; preparar mensagem para a ${BUSINESS_NAME}`);
+      link.removeAttribute("rel");
       link.setAttribute("aria-describedby", "whatsapp-availability");
     }
   });
   document.querySelectorAll("[data-whatsapp-number]").forEach(element => {
     element.textContent = formatWhatsAppNumber(number);
+    element.parentElement.hidden = !available;
   });
-  const availability = document.querySelector("#whatsapp-availability");
-  availability.hidden = available;
-  if (!available) availability.textContent = "WhatsApp em configuração. Enquanto isso, prepare e copie sua mensagem no formulário.";
+  document.querySelectorAll("[data-contact-availability]").forEach(element => { element.hidden = available; });
+  document.querySelector(".hero-note").hidden = !available;
+}
+
+function setupFloatingContact() {
+  const floating = document.querySelector(".floating-whatsapp");
+  if (!("IntersectionObserver" in window)) return;
+  const visibleSections = new Set();
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) visibleSections.add(entry.target);
+      else visibleSections.delete(entry.target);
+    }
+    floating.hidden = visibleSections.size > 0;
+  }, { rootMargin: "0px 0px 100px 0px" });
+  observer.observe(document.querySelector("#inicio"));
+  observer.observe(document.querySelector("#contato"));
+  observer.observe(document.querySelector(".site-footer"));
 }
 
 function setupBusinessDetails() {
   const cities = document.querySelector("#served-cities");
   if (businessDetails.servedCities.length) {
-    cities.previousElementSibling.textContent = "Cidades vizinhas atendidas:";
+    cities.hidden = false;
     cities.replaceChildren(...businessDetails.servedCities.map(city => {
       const item = document.createElement("li");
       item.textContent = city;
@@ -245,5 +260,6 @@ setupNavigation();
 setupWhatsApp();
 setupBusinessDetails();
 setupContact();
+setupFloatingContact();
 setupPrivacyLink();
 document.querySelector("#current-year").textContent = String(new Date().getFullYear());
