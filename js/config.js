@@ -1,7 +1,7 @@
 export const BUSINESS_NAME = "Datar Soluções Tecnológicas";
 
 // TODO: Replace with the real number (55 + area code + number, digits only).
-export const WHATSAPP_NUMBER = "55DDXXXXXXXXX";
+export const WHATSAPP_NUMBER = "";
 
 export const whatsappMessages = Object.freeze({
   general: "Olá, Datar Soluções Tecnológicas! Gostaria de solicitar um orçamento. Posso contar do que preciso e informar minha cidade?",
@@ -27,7 +27,7 @@ export const businessDetails = Object.freeze({
 export const services = Object.freeze({
   network: "Montagem e organização de redes empresariais",
   support: "Suporte técnico de TI",
-  hardware: "Manutenção preventiva e corretiva de hardware",
+  hardware: "Manutenção de computadores",
   other: "Outros serviços de TI",
   guidance: "Ainda não sei do que preciso"
 });

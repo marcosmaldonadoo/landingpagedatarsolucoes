@@ -56,11 +56,32 @@ export function createWhatsAppLink(number = WHATSAPP_NUMBER, message = whatsappM
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
+export function getContactAction(number, context = "general") {
+  const actions = {
+    general: ["Solicitar orçamento", "Preparar pedido"],
+    network: ["Solicitar orçamento de rede", "Preparar pedido de rede"],
+    support: ["Solicitar suporte técnico", "Preparar pedido de suporte"],
+    hardware: ["Solicitar manutenção", "Preparar pedido de manutenção"],
+    other: ["Conversar sobre meu pedido", "Preparar pedido"]
+  };
+  const key = Object.hasOwn(actions, context) ? context : "general";
+  const url = createWhatsAppLink(number, whatsappMessages[key]);
+  const label = actions[key][url ? 0 : 1];
+  return {
+    href: url || "#contact-form",
+    label,
+    ariaLabel: url ? `${label} com a ${BUSINESS_NAME} pelo WhatsApp (abre em outra aba)` : `${label} para copiar; envio à Datar indisponível no momento`,
+    external: Boolean(url),
+    service: key === "general" ? null : key
+  };
+}
+
 export function formatWhatsAppNumber(number = WHATSAPP_NUMBER) {
-  if (/^55(?:\d{2}\d{8,9}|D{2}X{9})$/.test(number)) {
+  if (getContactMode(number) !== "whatsapp") return "";
+  if (/^55\d{10,11}$/.test(number)) {
     return number.replace(/^55(.{2})(.{4,5})(.{4})$/, "+55 ($1) $2-$3");
   }
-  return getContactMode(number) === "whatsapp" ? `+${number}` : "Número pendente de configuração";
+  return `+${number}`;
 }
 
 export function updateBusinessSchema(schema, number, details) {

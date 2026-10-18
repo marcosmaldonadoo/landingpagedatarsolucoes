@@ -7,13 +7,15 @@ const schema = JSON.parse(html.match(/<script id="business-schema" type="applica
 const configuredNumber = "5545999999999";
 
 describe("WhatsApp configuration and links", () => {
-  test("keeps the placeholder safe and formats it from the configuration", () => {
-    expect(getContactMode(WHATSAPP_NUMBER)).toBe("demo");
-    expect(createWhatsAppLink()).toBeNull();
-    expect(formatWhatsAppNumber()).toBe("+55 (DD) XXXXX-XXXX");
+  test("omits an unconfigured number and formats only valid recipients", () => {
+    expect(["demo", "whatsapp"]).toContain(getContactMode(WHATSAPP_NUMBER));
+    expect(getContactMode("")).toBe("demo");
+    expect(createWhatsAppLink("")).toBeNull();
+    expect(formatWhatsAppNumber("")).toBe("");
+    expect(formatWhatsAppNumber("55DDXXXXXXXXX")).toBe("");
     expect(formatWhatsAppNumber(configuredNumber)).toBe("+55 (45) 99999-9999");
     expect(formatWhatsAppNumber("554533333333")).toBe("+55 (45) 3333-3333");
-    expect(formatWhatsAppNumber("+55 invalid")).toBe("Número pendente de configuração");
+    expect(formatWhatsAppNumber("+55 invalid")).toBe("");
   });
 
   test("encodes every contextual message with a single URL builder", () => {
@@ -40,9 +42,8 @@ describe("WhatsApp configuration and links", () => {
     expect(links.length).toBe(9);
     for (const [, context] of links) expect(Object.hasOwn(whatsappMessages, context)).toBe(true);
     for (const [link] of links) {
-      expect(link).toContain('href="#contato"');
-      expect(link).toContain('target="_blank"');
-      expect(link).toContain('rel="noopener noreferrer"');
+      expect(link).toMatch(/href="#(?:contato|contact-form)"/);
+      expect(link).not.toContain('target="_blank"');
       expect(link).toContain('aria-label="');
     }
     for (const context of ["network", "support", "hardware", "other"]) {
@@ -70,7 +71,7 @@ describe("Local identity and structured data", () => {
   });
 
   test("omits unconfirmed personal and contact information", () => {
-    const result = updateBusinessSchema(schema, WHATSAPP_NUMBER, businessDetails);
+    const result = updateBusinessSchema(schema, "", businessDetails);
     expect(result.telephone).toBeUndefined();
     expect(result.contactPoint.url).toBeUndefined();
     expect(result.address.streetAddress).toBeUndefined();
@@ -78,6 +79,8 @@ describe("Local identity and structured data", () => {
     expect(result.email).toBeUndefined();
     expect(result.taxID).toBeUndefined();
     expect(result.sameAs).toBeUndefined();
+    expect(result.areaServed).toEqual([{ "@type": "City", name: "Cascavel" }]);
+    expect(html).not.toMatch(/\[PREENCHER:|lista de cobertura a confirmar/);
   });
 
   test("uses the configured number and verified details without mutating the source", () => {
@@ -93,7 +96,7 @@ describe("Local identity and structured data", () => {
     expect(result.email).toBe(details.email);
     expect(result.taxID).toBe(details.cnpj);
     expect(schema.address.streetAddress).toBeUndefined();
-    expect(schema.areaServed).toHaveLength(2);
+    expect(schema.areaServed).toHaveLength(1);
   });
 });
 
