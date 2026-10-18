@@ -16,6 +16,18 @@ bun test
 
 Abra http://localhost:3000. Para iniciar sem observar alterações, use `bun run start`. HTML, CSS e JavaScript são estáticos; atualize a página após editar. O servidor Bun é destinado ao desenvolvimento local, não à hospedagem de produção.
 
+## Ferramentas de design
+
+O projeto inclui o [Impeccable](https://github.com/pbakaus/impeccable) 4.6.0 para Codex, instalado com:
+
+```sh
+npx impeccable install --yes --providers=codex --scope=project
+```
+
+Reabra a sessão do Codex para reconhecer a skill. Para iniciar a configuração do contexto do projeto, use `$impeccable init` no chat. Os hooks de verificação de design exigem aprovação do usuário em `/hooks` no Codex. As orientações de design devem respeitar as decisões aprovadas da marca.
+
+Para atualizar a instalação, execute `npx impeccable update`. Os arquivos distribuídos mantêm a licença Apache-2.0 em `.agents/skills/impeccable/LICENSE`.
+
 ## Arquitetura
 
 - `index.html`: wordmarks oficiais, conteúdo em pt-BR, metadados, dados estruturados, navegação, serviços, diferenciais, acolhimento, etapas, cobertura, FAQ, contato e privacidade.
