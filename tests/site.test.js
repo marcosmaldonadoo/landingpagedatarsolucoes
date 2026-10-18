@@ -37,7 +37,7 @@ describe("WhatsApp configuration and links", () => {
 
   test("provides contextual CTAs in every required section", () => {
     const links = [...html.matchAll(/<a\b[^>]*data-whatsapp="([^"]+)"[^>]*>/g)];
-    expect(links.length).toBe(8);
+    expect(links.length).toBe(9);
     for (const [, context] of links) expect(Object.hasOwn(whatsappMessages, context)).toBe(true);
     for (const [link] of links) {
       expect(link).toContain('href="#contato"');
@@ -45,7 +45,7 @@ describe("WhatsApp configuration and links", () => {
       expect(link).toContain('rel="noopener noreferrer"');
       expect(link).toContain('aria-label="');
     }
-    for (const context of ["hardware", "consulting", "network"]) {
+    for (const context of ["network", "support", "hardware", "other"]) {
       expect(Object.hasOwn(services, context)).toBe(true);
       expect(html).toContain('data-whatsapp="' + context + '"');
     }
@@ -95,4 +95,21 @@ describe("Local identity and structured data", () => {
     expect(schema.address.streetAddress).toBeUndefined();
     expect(schema.areaServed).toHaveLength(2);
   });
+});
+
+test("preserves the approved identity and network-first positioning", async () => {
+  const css = await Bun.file(new URL("../styles.css", import.meta.url)).text();
+  for (const color of ["#315B83", "#6EACC2", "#4FC3C8", "#E7F0F3", "#183247", "#FFFFFF"]) expect(css).toContain(color);
+  for (const font of ["inter", "manrope"]) {
+    expect(css).toContain(font + "-latin-variable.woff2");
+    expect(await Bun.file(new URL("../assets/fonts/" + font + "-latin-variable.woff2", import.meta.url)).exists()).toBe(true);
+  }
+  expect(html).toContain("datar-wordmark.svg");
+  expect(html).toContain("datar-wordmark-com-descritor.svg");
+  const favicon = await Bun.file(new URL("../favicon.svg", import.meta.url)).text();
+  const official = await Bun.file(new URL("../brandig/datar/03_Icones_Digitais/datar-favicon.svg", import.meta.url)).text();
+  expect(favicon.replace(/\r\n/g, "\n").trim()).toBe(official.replace(/\r\n/g, "\n").trim());
+  expect(schema.slogan).toBe("Sua rede em ordem. Seu negócio em movimento.");
+  expect(Object.keys(services)[0]).toBe("network");
+  expect(html).not.toMatch(/certificad[oa]s?|hero-visual|core-illustration/i);
 });

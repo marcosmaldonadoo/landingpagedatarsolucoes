@@ -43,7 +43,7 @@ describe("Preparação segura do contato", () => {
     expect(result.mode).toBe("demo");
     expect(result.url).toBeNull();
     expect(result.message).toContain("Nome: Ana Luísa");
-    expect(result.message).toContain("Serviço: Conserto e manutenção preventiva");
+    expect(result.message).toContain("Serviço: Manutenção preventiva e corretiva de hardware");
   });
 
   test("configurações inválidas nunca produzem um link de contato", () => {

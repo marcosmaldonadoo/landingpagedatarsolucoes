@@ -1,6 +1,8 @@
 # Datar Soluções Tecnológicas
 
-Site de serviços de TI para Cascavel, Paraná, e região: conserto e manutenção preventiva de computadores, consultoria de TI e redes para pequenas e médias empresas. Atendimento 24 horas.
+Redes de computadores para pequenas e médias empresas de Cascavel-PR e região, com suporte técnico, manutenção preventiva e corretiva e atendimento residencial complementar. Atendimento disponível 24 horas.
+
+**Sua rede em ordem. Seu negócio em movimento.**
 
 ## Executar
 
@@ -16,13 +18,15 @@ Abra http://localhost:3000. Para iniciar sem observar alterações, use `bun run
 
 ## Arquitetura
 
-- `index.html`: wordmark textual, conteúdo em pt-BR, metadados, dados estruturados, navegação, serviços, diferenciais, acolhimento, etapas, cobertura, FAQ, contato e privacidade.
-- `styles.css`: tokens azul e branco, componentes responsivos e estados de foco.
-- `js/config.js`: nome, telefone, quatro mensagens contextuais, catálogo de serviços e campos comerciais a preencher.
+- `index.html`: wordmarks oficiais, conteúdo em pt-BR, metadados, dados estruturados, navegação, serviços, diferenciais, acolhimento, etapas, cobertura, FAQ, contato e privacidade.
+- `styles.css`: paleta oficial, Manrope e Inter locais, componentes responsivos e estados de foco.
+- `js/config.js`: nome, telefone, mensagens contextuais, catálogo de serviços e campos comerciais a preencher.
 - `js/contact.js`: validação, formatação do telefone, construção única da URL e atualização segura do JSON-LD.
 - `js/main.js`: menu, configuração dos CTAs, dados comerciais, prévia, cópia e mensagens do formulário.
-- `assets/digital-core.svg`: ilustração decorativa; não é um logotipo da empresa.
-- `favicon.svg`: letra D, sem simular uma certificação ou um logotipo oficial.
+- `brandig/datar/`: kit oficial recebido, preservado sem alterações. A pasta foi fornecida como `brandig`, não `branding`.
+- `assets/fonts/`: fontes locais variáveis e licenças OFL; não há chamadas ao Google Fonts no site.
+- `assets/digital-core.svg`: ilustração antiga preservada, sem uso na página.
+- `favicon.svg`: cópia do favicon SVG oficial; ícone Apple também usa o kit.
 - `scripts/serve.js`: servidor local restrito aos arquivos públicos.
 - `scripts/check.js`: compilação JavaScript para navegador e verificação de imports, IDs, assets e âncoras.
 - `tests/`: testes do formulário, mensagens, telefone, CTAs, identidade e dados estruturados.
@@ -31,15 +35,15 @@ Abra http://localhost:3000. Para iniciar sem observar alterações, use `bun run
 
 Edite `js/config.js`. `WHATSAPP_NUMBER` é a única fonte do telefone. Substitua `55DDXXXXXXXXX` por 55 + DDD + número real autorizado, somente dígitos, sem espaços, sinal de mais ou pontuação. A validação verifica o formato, não a existência da conta.
 
-Enquanto o valor for provisório, vazio ou inválido, os oito CTAs apontam para a seção de contato, mostram um aviso de configuração e não abrem um número fictício. O formulário continua permitindo preparar e copiar uma mensagem. Com o número real configurado, os CTAs abrem o WhatsApp em outra aba com `noopener noreferrer`, texto codificado e rótulos acessíveis. O envio final sempre depende da ação do visitante.
+Enquanto o valor for provisório, vazio ou inválido, os nove CTAs apontam para a seção de contato, mostram um aviso de configuração e não abrem um número fictício. O formulário continua permitindo preparar e copiar uma mensagem. Com o número real configurado, os CTAs abrem o WhatsApp em outra aba com `noopener noreferrer`, texto codificado e rótulos acessíveis. O envio final sempre depende da ação do visitante.
 
-As mensagens `general`, `hardware`, `network` e `consulting` ficam no mesmo arquivo. O telefone legível do contato e rodapé é gerado da constante, inclusive o formato provisório +55 (DD) XXXXX-XXXX. Não substitua esse texto diretamente no HTML.
+As mensagens `general`, `network`, `support`, `hardware` e `other` (e a variante legada `consulting`, preservada por compatibilidade) ficam no mesmo arquivo. O telefone legível do contato e rodapé é gerado da constante, inclusive o formato provisório +55 (DD) XXXXX-XXXX. Não substitua esse texto diretamente no HTML.
 
 ### Campos a preencher
 
 Todos os campos de `businessDetails` têm TODOs em inglês e começam vazios:
 
-- `certifications`: somente nomes comprovados. A comunicação menciona profissionais certificados conforme o briefing; confirme a comprovação antes de publicar, sem inventar certificações.
+- `certifications`: opcional, somente nomes comprovados. Não há alegações de certificação no conteúdo padrão.
 - `streetAddress` e `postalCode`: endereço e CEP reais, se puderem ser publicados.
 - `cnpj`: CNPJ real, se for divulgado.
 - `email`: endereço de e-mail público autorizado.
@@ -62,4 +66,4 @@ Sem JavaScript, o conteúdo, as âncoras, as perguntas e a privacidade continuam
 
 `bun run check` verifica a compilação para navegador e referências locais, sem gerar artefatos. `bun test` executa os testes automatizados. Não há scripts separados de lint, type-check ou build. Não se adicionaram dependências ao projeto.
 
-Consulte `VALIDACAO.md` para os resultados, métodos e limites da validação. Antes de publicar, preencha os dados, confirme certificações, cidades, condições de atendimento e texto de privacidade. Não há promessa de prazo fixo de resposta, recuperação de dados ou visita imediata durante a madrugada.
+Consulte `VALIDACAO.md` para os resultados, métodos e limites da validação. Antes de publicar, preencha os dados, confirme os dados comerciais, cidades, condições de atendimento e texto de privacidade. Não há promessa de prazo fixo de resposta, recuperação de dados ou visita imediata durante a madrugada.
